@@ -24,9 +24,10 @@ function rawProfiles() {
 
 export function loadProfiles() {
   try {
-    const profiles = normalizeProfiles(rawProfiles());
+    const raw = rawProfiles();
+    const profiles = normalizeProfiles(raw);
     const legacy = localStorage.getItem(LEGACY_KEY);
-    if (legacy && profiles.every(profile => profile === null)) {
+    if (legacy && raw === null) {
       profiles[0] = migrateGame(JSON.parse(legacy));
       localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
     }
@@ -51,12 +52,15 @@ export function saveProfiles(profiles) {
 }
 
 export function getActiveProfileIndex() {
-  const value = Number(localStorage.getItem(ACTIVE_KEY));
+  let value;
+  try { value = Number(localStorage.getItem(ACTIVE_KEY)); }
+  catch { return 0; }
   return Number.isInteger(value) && value >= 0 && value < PROFILE_LIMIT ? value : 0;
 }
 
 export function setActiveProfileIndex(index) {
-  localStorage.setItem(ACTIVE_KEY, String(index));
+  try { localStorage.setItem(ACTIVE_KEY, String(index)); }
+  catch (error) { console.warn('Не удалось запомнить активный слот', error); }
 }
 
 export function createProfilesBackup(profiles, reason = 'manual') {
@@ -71,7 +75,8 @@ export function createProfilesBackup(profiles, reason = 'manual') {
     };
     backups.unshift(item);
     localStorage.setItem(BACKUPS_KEY, JSON.stringify(backups.slice(0, MAX_BACKUPS)));
-    localStorage.setItem(BACKUP_META_KEY, JSON.stringify({ createdAt:item.createdAt, reason }));
+    try { localStorage.setItem(BACKUP_META_KEY, JSON.stringify({ createdAt:item.createdAt, reason })); }
+    catch (error) { console.warn('Не удалось записать дату резервной копии', error); }
     return { ok:true, backup:item };
   } catch (error) {
     console.error('Не удалось создать резервную копию', error);
@@ -106,8 +111,8 @@ export function restoreLatestBackup(write = true) {
 
 export function saveProfile(profiles, index, game) {
   game.updatedAt = new Date().toISOString();
-  validateGameState(game,true);
   profiles[index] = game;
+  if (!saveProfiles(profiles)) return false;
   const meta = (() => {
     try { return JSON.parse(localStorage.getItem(BACKUP_META_KEY) || 'null'); } catch { return null; }
   })();
@@ -119,13 +124,16 @@ export function saveProfile(profiles, index, game) {
       game.stability.lastBackupAt = result.backup.createdAt;
     }
   }
-  return saveProfiles(profiles);
+  return true;
 }
 
 export function deleteProfile(profiles, index) {
+  const nextProfiles = [...profiles];
+  nextProfiles[index] = null;
   createProfilesBackup(profiles, 'before-delete');
+  if (!saveProfiles(nextProfiles)) return false;
   profiles[index] = null;
-  saveProfiles(profiles);
+  return true;
 }
 
 export function exportProfile(game) {

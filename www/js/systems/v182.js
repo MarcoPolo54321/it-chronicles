@@ -1,6 +1,7 @@
 import { addLog, addMoney, skillLevel } from './progression.js';
 import { advanceHours } from './calendar.js';
 import { CLIENT_ARCHETYPES_V182, RELEASE_BALANCE_V182, RELEASE_GOALS_V182, SPECIALIZATION_PERKS_V182 } from '../data/v182.js';
+import { GAME_VERSION } from '../data/version.js';
 
 function clamp(value,min,max){return Math.max(min,Math.min(max,Number(value)||0));}
 function hashString(value=''){
@@ -82,35 +83,38 @@ export function releaseGoalsV182(game){
 
 export function recoveryStatusV182(game){
   ensureV182(game);
-  const day=Number(game.calendar?.totalDays||0);
-  const cooldown=Math.max(0,RELEASE_BALANCE_V182.emergencyCooldownDays-(day-Number(game.v182.recovery.lastDay||-999)));
+  const recovery=game.v182.recovery;
+  const now=recoveryHour(game);
+  const lastHour=recovery.lastHour ?? Number(recovery.lastDay ?? -999)*24;
+  const cooldown=Math.max(0,Math.ceil((lastHour+RELEASE_BALANCE_V182.emergencyCooldownDays*24-now)/24));
   const noOrders=!(game.orders?.available?.length||0)&&!(game.orders?.active?.length||0);
   const lowCash=Number(game.player?.cash||0)<RELEASE_BALANCE_V182.emergencyCashThreshold;
   const lowEnergy=Number(game.player?.energy||0)<RELEASE_BALANCE_V182.emergencyEnergyThreshold;
   return{available:cooldown<=0&&(lowCash||lowEnergy||noOrders),cooldown,lowCash,lowEnergy,noOrders};
 }
 
+function recoveryHour(game) {
+  return Number(game.calendar?.totalHours ?? Number(game.calendar?.totalDays || 0)*24);
+}
+
 export function emergencyRecoveryV182(game){
   const state=recoveryStatusV182(game);
   if(!state.available)return{ok:false,message:state.cooldown>0?`Экстренная помощь будет доступна через ${state.cooldown} дн.`:'Сейчас экстренная помощь не требуется'};
-  const day=Number(game.calendar?.totalDays||0);
+  game.v182.recovery.lastHour=recoveryHour(game);
+  game.v182.recovery.lastDay=Number(game.calendar?.totalDays||0);
+  game.v182.recovery.uses+=1;
+  game.v182.stats.deadEndsPrevented+=1;
   if(state.lowEnergy){
     game.player.energy=clamp(Number(game.player.energy||0)+RELEASE_BALANCE_V182.emergencyRestGain,0,100);
     game.player.mood=clamp(Number(game.player.mood||0)-3,0,100);
     advanceHours(game,12,{activity:'rest',reason:'Экстренное восстановление'});
-    game.v182.recovery.lastDay=day;
-    game.v182.recovery.uses+=1;
-    game.v182.stats.deadEndsPrevented+=1;
     addLog(game,'Экстренное восстановление: бесплатный сон вернул часть энергии.','info');
     return{ok:true,message:`Энергия восстановлена на ${RELEASE_BALANCE_V182.emergencyRestGain}% · прошло 12 ч.`};
   }
   game.player.energy=clamp(Number(game.player.energy||0)-RELEASE_BALANCE_V182.emergencyEnergyCost,0,100);
   addMoney(game,RELEASE_BALANCE_V182.emergencyReward,'Экстренная подработка');
   advanceHours(game,6,{activity:'productive',reason:'Экстренная подработка'});
-  game.v182.recovery.lastDay=day;
-  game.v182.recovery.uses+=1;
   game.v182.stats.emergencyJobs+=1;
-  game.v182.stats.deadEndsPrevented+=1;
   addLog(game,'Экстренная подработка помогла избежать финансового тупика.','success');
   return{ok:true,message:`Подработка завершена: +${RELEASE_BALANCE_V182.emergencyReward.toLocaleString('ru-RU')} ₽ · энергия −${RELEASE_BALANCE_V182.emergencyEnergyCost}`};
 }
@@ -144,7 +148,7 @@ export function feedbackReportV182(game,screen='home'){
   const lastLog=(game.log||[])[0]?.text||'нет';
   const text=[
     'Хроники Айтишника — отчёт открытого теста',
-    `Версия игры: 0.18.3`,
+    `Версия игры: ${GAME_VERSION}`,
     `Схема сохранения: ${game.version}`,
     `Экран: ${screen}`,
     `Игровая дата: ${String(game.calendar?.day||1).padStart(2,'0')}.${String(game.calendar?.month||1).padStart(2,'0')}.${game.calendar?.year||2000} ${String(Math.floor(Number(game.calendar?.hour||0))).padStart(2,'0')}:00`,

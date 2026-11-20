@@ -5,6 +5,7 @@ import { WORKSPACE_GROUPS, WORKSPACE_ITEMS, workspaceAsset, workspaceBonuses, wo
 const REMOVED_POST_2010_ACHIEVEMENTS = new Set(['g4','g5','g6','g7','g8','g9','j6','j7']);
 const ACTIVE_ACHIEVEMENTS = ACHIEVEMENTS.filter((item) => !REMOVED_POST_2010_ACHIEVEMENTS.has(item.id));
 import { HERO_AVATARS, heroAvatarById, heroAvatarEra, heroAvatarFile } from '../data/avatars.js';
+import { GAME_VERSION } from '../data/version.js';
 import { formatDate, formatMoney, escapeHtml, normalizedText } from '../core/utils.js';
 import { availableComponents, componentPrice, componentSellPrice } from '../systems/economy.js';
 import { EDUCATION_QUEUE_LIMIT, availableEducation, educationById, educationCost, educationDays, educationMarketStatusV167, educationPlayerXp, educationRequirements, isLongEducation, isTemporaryMaterial } from '../systems/education.js';
@@ -31,7 +32,7 @@ import { BUSINESS_STAGES_V165, EMPLOYEE_TRAINING_PROGRAMS_V165, FINANCE_CATEGORY
 import { businessStage, businessStageRequirement, companyCapacity, employeeSkillSummary, employeeTrainingPrice, ensureV165, clientTypeInfo, orderInfluenceBreakdown } from '../systems/v165.js';
 import { contextualTip, ensureQualityState, ledgerEntries, latestFinancialReport, validateGameState } from '../core/quality.js';
 import { ORDER_TASK_TYPES_V166, orderTaskTypeV166 } from '../data/v166.js';
-import { orderDeadlineProgressV166, refreshCooldownRemainingV166, targetAvailableOrdersV166 } from '../systems/v166.js';
+import { orderDeadlineProgressV166, refreshCooldownRemainingV166 } from '../systems/v166.js';
 import { LIFESTYLE_PLANS_V169 } from '../data/v169.js';
 import { energyErrorPenalty, energyPerformanceFactor, lifestyleDailyCost, lifestylePlan } from '../systems/v169.js';
 import { AD_CATEGORY_ASSETS_V180, DIFFICULTY_MODES_V180, EMPLOYEE_ROLES_V180, QUOTE_STRATEGIES_V180 } from '../data/v180.js';
@@ -67,12 +68,12 @@ function avatarBonusItems(avatar) {
 
 function avatarBonusChips(avatar, className = 'avatar-bonus-list') {
   const items = avatarBonusItems(avatar);
-  return `<div class="${className}">${items.map((item) => `<span><i class="setup-skill-icon">${skillIconMarkup(item.skill, item.meta.name)}</i><strong>+${item.amount}</strong> ${escapeHtml(item.meta.name)}</span>`).join('')}</div>`;
+  return `<div class="${className}">${items.map((item) => `<span class="skill-bonus"><i class="setup-skill-icon">${skillIconMarkup(item.skill, '')}</i><strong>+${item.amount}</strong><em>${escapeHtml(item.meta.name)}</em></span>`).join('')}</div>`;
 }
 
 function backgroundBonusChips(backgroundId, className = 'background-bonus-list') {
   const background = starterBackgroundById(backgroundId);
-  return `<div class="${className}">${(background.bonuses || []).map((item) => { const meta=skillMeta[item.skill]||{name:item.skill,icon:'+'}; return `<span><i class="setup-skill-icon">${skillIconMarkup(item.skill, meta.name)}</i><strong>+${item.amount}</strong> ${escapeHtml(meta.name)}</span>`; }).join('')}</div>`;
+  return `<div class="${className}">${(background.bonuses || []).map((item) => { const meta=skillMeta[item.skill]||{name:item.skill,icon:'+'}; return `<span class="skill-bonus"><i class="setup-skill-icon">${skillIconMarkup(item.skill, '')}</i><strong>+${item.amount}</strong><em>${escapeHtml(meta.name)}</em></span>`; }).join('')}</div>`;
 }
 
 function skillGuide(skillId) {
@@ -503,9 +504,11 @@ export function renderProfiles(profiles, ui) {
   const cards=[...created];
   if(firstEmpty>=0)cards.push({profile:null,index:firstEmpty});
   return `<main class="entry-shell">
-    <button class="theme-fab" data-action="toggle-theme" aria-label="Переключить тему">ТЕМА</button>
     <section class="entry-card panel">
-      <div class="boot-mark"><span></span><b>VERSION 0.18.3</b></div>
+      <div class="entry-actions">
+        <div class="boot-mark"><span></span><b>Версия ${GAME_VERSION}</b></div>
+        <button class="theme-fab" data-action="toggle-theme" aria-label="Светлая тема" aria-pressed="${ui.theme === 'light'}">Тема</button>
+      </div>
       <div class="entry-brand"><img src="./assets/app-icon.png" alt="" class="entry-icon"><div><p class="eyebrow">РЕТРО-СИМУЛЯТОР КАРЬЕРЫ</p><h1>Хроники<br><em>Айтишника</em></h1></div></div>
       <p class="lead">Начни в 2000-м с дискет, Windows 98 и ремонта домашних ПК. Развивай навыки, мастерскую и бизнес до финала 2010 года.</p>
       <div class="profile-list-title"><strong>Карьеры</strong><small>${created.length} из 10 создано</small></div>
@@ -521,28 +524,46 @@ export function renderProfiles(profiles, ui) {
   </main>`;
 }
 
+function setupPickerOptions(items, selectedId, renderOption) {
+  return `<div class="setup-picker-options">${items.map((item, index) =>
+    `<div class="setup-picker-option"${item.id === selectedId ? '' : ' aria-hidden="true"'}>${renderOption(item, index)}</div>`
+  ).join('')}</div>`;
+}
+
 export function renderSetup(ui) {
   const selectedBackground=starterBackgroundById(ui.specialization||'hardware');
-  const selectedBackgroundIndex=Math.max(0,STARTER_BACKGROUNDS_V163.findIndex(item=>item.id===selectedBackground.id));
   const selectedAvatar=heroAvatarById(ui.avatar||'classic');
   const selectedAvatarIndex=Math.max(0,HERO_AVATARS.findIndex(item=>item.id===selectedAvatar.id));
+  const backgroundIndex=Math.max(0,STARTER_BACKGROUNDS_V163.findIndex(item=>item.id===selectedBackground.id));
   return `<main class="entry-shell">
-    <button class="theme-fab" data-action="toggle-theme" aria-label="Переключить тему">ТЕМА</button>
     <section class="entry-card panel setup-card">
-      <button class="icon-btn back" data-action="back-profiles">←</button>
+      <div class="entry-actions">
+        <button class="icon-btn" data-action="back-profiles" aria-label="К списку карьер">←</button>
+        <button class="theme-fab" data-action="toggle-theme" aria-label="Светлая тема" aria-pressed="${ui.theme === 'light'}">Тема</button>
+      </div>
       <p class="eyebrow">НОВАЯ КАРЬЕРА · СЛОТ ${ui.setupSlot+1}</p><h2>Создание персонажа</h2>
       <label class="field"><span>Имя айтишника</span><input id="playerName" maxlength="20" placeholder="Например: Алекс" autocomplete="off" value="${escapeHtml(ui.playerName||'')}"></label>
       <div class="field-title">Стартовый профессиональный бэкграунд</div>
-      <section class="background-picker panel-soft" aria-label="Выбор профессионального бэкграунда">
-        <button class="avatar-picker-arrow" data-action="previous-background" aria-label="Предыдущий бэкграунд">‹</button>
-        <div class="background-picker-card"><div><strong>${escapeHtml(selectedBackground.name)}</strong><small>${escapeHtml(selectedBackground.desc)}</small>${backgroundBonusChips(selectedBackground.id,'background-picker-bonuses')}<span>${selectedBackgroundIndex+1} из ${STARTER_BACKGROUNDS_V163.length}</span></div></div>
-        <button class="avatar-picker-arrow" data-action="next-background" aria-label="Следующий бэкграунд">›</button>
+      <section class="setup-picker background-picker panel-soft" aria-label="Выбор профессионального бэкграунда">
+        <div class="setup-picker-controls">
+          <button class="avatar-picker-arrow" data-action="previous-background" aria-label="Предыдущий бэкграунд">‹</button>
+          <span class="setup-picker-count">${backgroundIndex+1} из ${STARTER_BACKGROUNDS_V163.length}</span>
+          <button class="avatar-picker-arrow" data-action="next-background" aria-label="Следующий бэкграунд">›</button>
+        </div>
+        ${setupPickerOptions(STARTER_BACKGROUNDS_V163, selectedBackground.id, (item) => `<strong class="setup-picker-name">${escapeHtml(item.name)}</strong><p>${escapeHtml(item.desc)}</p>${backgroundBonusChips(item.id,'background-picker-bonuses')}`)}
       </section>
       <div class="field-title">Профиль героя и стартовые бонусы</div>
-      <section class="avatar-picker panel-soft" aria-label="Выбор профиля героя"><button class="avatar-picker-arrow" data-action="previous-avatar" aria-label="Предыдущий герой">‹</button><div class="avatar-picker-card">${avatarImage(selectedAvatar.id,selectedAvatar.name,'avatar-picker-image',2000)}<div class="avatar-picker-copy"><strong>${escapeHtml(selectedAvatar.name)}</strong><small>${escapeHtml(selectedAvatar.desc)}</small>${avatarBonusChips(selectedAvatar,'avatar-picker-bonuses')}<span>${selectedAvatarIndex+1} из ${HERO_AVATARS.length}</span></div></div><button class="avatar-picker-arrow" data-action="next-avatar" aria-label="Следующий герой">›</button></section>
+      <section class="setup-picker avatar-picker panel-soft" aria-label="Выбор профиля героя">
+        <div class="setup-picker-controls">
+          <button class="avatar-picker-arrow" data-action="previous-avatar" aria-label="Предыдущий герой">‹</button>
+          <div class="setup-portrait">${avatarImage(selectedAvatar.id,'','avatar-picker-image',2000)}<span class="setup-picker-count">${selectedAvatarIndex+1} из ${HERO_AVATARS.length}</span></div>
+          <button class="avatar-picker-arrow" data-action="next-avatar" aria-label="Следующий герой">›</button>
+        </div>
+        ${setupPickerOptions(HERO_AVATARS, selectedAvatar.id, (item) => `<strong class="setup-picker-name">${escapeHtml(item.name)}</strong><p>${escapeHtml(item.desc)}</p>${avatarBonusChips(item,'avatar-picker-bonuses')}`)}
+      </section>
       <p class="avatar-picker-hint">Профессиональный бэкграунд и профиль героя — независимые бонусы: оба набора складываются.</p>
       <div class="field-title">Сложность карьеры</div>
-      <div class="difficulty-picker">${DIFFICULTY_MODES_V180.map((item)=>`<button class="panel-soft ${item.id===(ui.difficultyId||'normal')?'active':''}" data-action="select-difficulty" data-value="${item.id}"><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(item.desc)}</small></button>`).join('')}</div>
+      <div class="difficulty-picker">${DIFFICULTY_MODES_V180.map((item)=>{const active=item.id===(ui.difficultyId||'normal'); return `<button class="panel-soft ${active?'active':''}" aria-pressed="${active}" data-action="select-difficulty" data-value="${item.id}"><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(item.desc)}</small></button>`;}).join('')}</div>
       <button class="button primary full setup-start-button" data-action="create-profile">Начать в 2000 году</button>
     </section>
   </main>`;
@@ -815,7 +836,7 @@ function renderOrders(game, ui) {
     return `<article class="history-order panel"><div class="history-order-head"><span>${orderArt(order)}</span><div><strong>${escapeHtml(order.name)}</strong><small>${escapeHtml(status)} · ${escapeHtml(order.client?.name||'Клиент')} · ${days||0} дн.</small></div><b class="${order.status==='completed'?'success-text':'danger-text'}">${order.status==='completed'?`+${formatMoney(profit)}`:'−'}</b></div>${review?`<div class="history-review"><span>${review.stars}/5</span><p>«${escapeHtml(review.text)}»</p></div>`:''}${breakdown}</article>`;
   }).join(''):emptyState('LOG','История пуста','Завершённые, проваленные и просроченные заказы появятся здесь.');
   const cooldown=Math.ceil(refreshCooldownRemainingV166(game));
-  const refreshBlock=sub==='available'?`<section class="refresh-orders-panel panel"><div class="refresh-orders-copy"><div class="refresh-orders-media">${imageIcon(ORDER_ACTION_ASSETS_V183.refresh,'Обновление заявок','refresh-orders-image')}</div><div><p class="eyebrow">НОВЫЙ ПОТОК КЛИЕНТОВ</p><h3>Обновить заявки</h3><p>Текущие заявки будут отклонены. Штраф: −1 репутация и 6 игровых часов. Следующее обновление — через 24 часа.</p><small>Сейчас доступно ${game.orders.available.length}/${targetAvailableOrdersV166(game)} заявок${cooldown>0?` · ожидание ${cooldown} ч.`:''}</small></div></div><button class="button secondary action-button-with-icon" data-action="refresh-orders" ${cooldown>0?'disabled':''}>${actionIconMarkup(ORDER_ACTION_ASSETS_V183.refresh,'Обновить заявки')}<span>${cooldown>0?`Доступно через ${cooldown} ч.`:'Обновить заявки'}</span></button></section>`:'';
+  const refreshBlock=sub==='available'?`<section class="refresh-orders-panel panel"><div class="refresh-orders-copy"><div class="refresh-orders-media">${imageIcon(ORDER_ACTION_ASSETS_V183.refresh,'Обновление заявок','refresh-orders-image')}</div><div><p class="eyebrow">НОВЫЙ ПОТОК КЛИЕНТОВ</p><h3>Обновить заявки</h3><p>Текущие заявки будут отклонены. Штраф: −1 репутация и 6 игровых часов. Следующее обновление — через 24 часа.</p><small>Доступные заявки · ${game.orders.available.length}${cooldown>0?` · ожидание ${cooldown} ч.`:''}</small></div></div><button class="button secondary action-button-with-icon" data-action="refresh-orders" ${cooldown>0?'disabled':''}>${actionIconMarkup(ORDER_ACTION_ASSETS_V183.refresh,'Обновить заявки')}<span>${cooldown>0?`Доступно через ${cooldown} ч.`:'Обновить заявки'}</span></button></section>`:'';
   return `<section class="screen">${pageHeader('РАБОЧАЯ ОЧЕРЕДЬ','Заказы',`Активно ${game.orders.active.length}/${maxActiveOrders(game)}`)}${sectionNav([['available',`Заявки ${game.orders.available.length}`],['active',`В работе ${game.orders.active.length}`],['history','История']],sub,'orders')}<div class="stack">${content}</div>${refreshBlock}</section>`;
 }
 
@@ -829,18 +850,22 @@ function shopToolbar(ui) {
   <div class="shop-category-tabs">${categories.map(([id, name]) => `<button class="${ui.shopCategory === id ? 'active' : ''}" data-action="shop-category" data-value="${id}">${name}</button>`).join('')}</div></div>`;
 }
 
-function renderShop(game, ui) {
+export function renderShopResults(game, ui) {
   const query = normalizedText(ui.shopQuery);
   const all = availableComponents(game, ui.shopCategory).filter((component) => !query || normalizedText(`${component.name} ${component.socket || ''} ${component.ramType || ''}`).includes(query));
   const pageSize = 8;
   const pages = Math.max(1, Math.ceil(all.length / pageSize));
   const page = Math.min(ui.shopPage, pages);
   const items = all.slice((page - 1) * pageSize, page * pageSize);
-  return `${shopToolbar(ui)}<div class="shop-summary"><span>${all.length} товаров · страница ${page}/${pages}</span><span>${game.market?.activeEvent?`Рынок: ${escapeHtml(game.market.activeEvent.name)}`:`Скидка ${(game.property.upgrades.supply || 0) * 4}%`}</span></div><div class="catalog-grid">${items.map((component) => {
+  return `<div class="shop-summary"><span>${all.length} товаров · страница ${page}/${pages}</span><span>${game.market?.activeEvent?`Рынок: ${escapeHtml(game.market.activeEvent.name)}`:`Скидка ${(game.property.upgrades.supply || 0) * 4}%`}</span></div><div class="catalog-grid">${items.map((component) => {
     const price = componentPrice(game, component);
     const owned = game.inventory[component.id] || 0;
     return `<article class="product-card panel"><div class="product-icon">${componentArt(component)}</div><div class="product-copy"><h3>${escapeHtml(component.name)}</h3><p>${[component.socket || component.mbSocket, component.ramType, component.watts ? `${component.watts} W` : ''].filter(Boolean).join(' · ') || `Уровень ${component.tier || 1}`}</p><div class="product-meta"><strong>${formatMoney(price)}</strong>${owned ? chip(` ${owned}`, 'ok') : ''}</div></div><div class="buy-actions"><button data-action="buy-item" data-id="${component.id}" data-qty="1">Купить 1</button><button data-action="buy-item" data-id="${component.id}" data-qty="5">Купить 5</button></div></article>`;
   }).join('')}</div><div class="pagination"><button data-action="shop-page" data-value="${Math.max(1, page - 1)}" ${page <= 1 ? 'disabled' : ''}>←</button><span>${page} / ${pages}</span><button data-action="shop-page" data-value="${Math.min(pages, page + 1)}" ${page >= pages ? 'disabled' : ''}>→</button></div>`;
+}
+
+function renderShop(game, ui) {
+  return `${shopToolbar(ui)}<div id="shopResults">${renderShopResults(game, ui)}</div>`;
 }
 
 function renderInventory(game) {
@@ -1263,7 +1288,7 @@ function renderSettings(game, ui) {
     <button data-action="switch-profile"><span><strong>Выбор профиля</strong><small>Вернуться к слотам сохранений</small></span><b>IT</b></button>
   </div>
   <button class="button danger full" data-action="reset-current-profile">Удалить текущую карьеру</button>
-  <p class="version-note">Хроники Айтишника · версия 0.18.3 · автор: Ивасик</p>`;
+  <p class="version-note">Хроники Айтишника · версия ${GAME_VERSION} · автор: Ивасик</p>`;
 }
 
 function renderAdvertising(game, ui) {

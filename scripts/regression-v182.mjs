@@ -17,16 +17,21 @@ import {
   specializationPerkV182
 } from '../www/js/systems/v182.js';
 import { CLIENT_ARCHETYPES_V182, SPECIALIZATION_PERKS_V182 } from '../www/js/data/v182.js';
+import { GAME_VERSION } from '../www/js/data/version.js';
+import { advanceDays } from '../www/js/systems/calendar.js';
+import { continueFrozen2010, markCampaignFinished } from '../www/js/systems/v160.js';
+import { targetAvailableOrdersV166 } from '../www/js/systems/v166.js';
+import { deleteProfile, loadProfiles, saveProfile } from '../www/js/core/storage.js';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=(rel)=>fs.readFileSync(path.join(root,rel),'utf8');
 const pkg=JSON.parse(read('package.json'));
-assert.equal(pkg.version,'0.18.3');
+assert.equal(pkg.version,GAME_VERSION);
+assert.equal(pkg.androidVersionCode,1804);
 assert.equal(SAVE_VERSION,19);
 const build=read('BUILD_UPDATE.ps1');
-assert.match(build,/versionCode 1803/);
-assert.match(build,/versionName "0\.18\.3"/);
-assert.match(build,/Hroniki-Aytishnika-v0\.18\.3\.apk/);
+assert.match(build,/versionCode \$versionCode/);
+assert.match(build,/Hroniki-Aytishnika-v\$version-debug\.apk/);
 
 const game=createNewGame({name:'RC 18.2',specialization:'hardware',avatar:'classic',difficultyId:'normal'});
 ensureV182(game);
@@ -68,12 +73,41 @@ const recovery=emergencyRecoveryV182(game);
 assert.equal(recovery.ok,true);
 assert.ok(game.player.cash>cashBefore||game.player.energy>82);
 assert.equal(game.v182.stats.deadEndsPrevented,1);
+assert.equal(game.calendar.totalDays,0);
+assert.equal(emergencyRecoveryV182(game).ok,false);
+assert.equal(recoveryStatusV182(game).cooldown,7);
+
+// Old day-zero saves still respect the cooldown after migration.
+const oldRecovery=createNewGame();
+ensureV182(oldRecovery);
+oldRecovery.v182.recovery={lastDay:0,uses:1};
+assert.equal(recoveryStatusV182(oldRecovery).cooldown,7);
+
+const afterFinale=createNewGame();
+afterFinale.calendar.totalDays=3959;
+afterFinale.calendar.totalHours=3959*24;
+markCampaignFinished(afterFinale);
+continueFrozen2010(afterFinale);
+afterFinale.player.cash=100;
+assert.equal(emergencyRecoveryV182(afterFinale).ok,true);
+advanceDays(afterFinale,7);
+assert.equal(recoveryStatusV182(afterFinale).cooldown,0);
+
+const board=createNewGame();
+refreshOrders(board,true);
+board.orders.available=board.orders.available.filter(order=>!order.recoveryOrder);
+board.player.cash=100;
+refreshOrders(board);
+assert.ok(board.orders.available.some(order=>order.recoveryOrder));
+assert.equal(board.orders.available.length,targetAvailableOrdersV166(board));
+refreshOrders(board);
+assert.equal(board.orders.available.filter(order=>order.recoveryOrder).length,1);
 
 const report=releaseReadinessReportV182(game);
 assert.equal(report.saveVersion,19);
 assert.ok(Array.isArray(report.warnings));
 const feedback=feedbackReportV182(game,'home');
-assert.match(feedback,/Версия игры: 0\.18\.3/);
+assert.ok(feedback.includes(`Версия игры: ${GAME_VERSION}`));
 assert.match(feedback,/Что произошло:/);
 
 const ui={theme:'dark',tab:'home',morePage:'home',heroSection:'development',ordersSection:'available',workshopSection:'workspace',workspaceGroup:'core',growthSection:'skills',educationKind:'quick',educationSkill:'hardware',educationFormalType:'college',educationPage:1,shopCategory:'all',shopQuery:'',shopPage:1,businessSection:'overview',advertisingPage:1,advertisingScope:'personal',advertisingDuration:'week',notificationFilter:'all',ledgerFilter:'all',financeReportIndex:0,modal:null};
@@ -104,4 +138,34 @@ assert.match(css,/release-onboarding-v182/);
 assert.match(css,/quality-breakdown-v182/);
 assert.match(css,/ad-audience-guide-v182/);
 
-console.log('Regression v0.18.3: OK');
+const values=new Map();
+let rejectProfileWrites=false;
+Object.defineProperty(globalThis,'localStorage',{configurable:true,value:{
+  getItem: key=>values.get(key) ?? null,
+  setItem: (key,value)=>{
+    if(rejectProfileWrites&&key==='it_chronicles_profiles_v2')throw new Error('Simulated quota limit');
+    values.set(key,value);
+  }
+}});
+const slots=Array(10).fill(null);
+const current=createNewGame({name:'Тест сохранения'});
+assert.equal(saveProfile(slots,0,current),true);
+const previousCash=current.player.cash;
+current.player.cash+=100;
+rejectProfileWrites=true;
+const reportStorageError=console.error;
+try {
+  console.error=()=>{};
+  assert.equal(saveProfile(slots,0,current),false);
+  assert.equal(deleteProfile(slots,0),false);
+} finally {
+  console.error=reportStorageError;
+}
+assert.equal(slots[0],current);
+assert.equal(loadProfiles()[0].player.cash,previousCash);
+rejectProfileWrites=false;
+assert.equal(saveProfile(slots,0,current),true);
+assert.equal(loadProfiles()[0].player.cash,previousCash+100);
+delete globalThis.localStorage;
+
+console.log(`Regression v${GAME_VERSION}: OK`);

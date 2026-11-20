@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createNewGame, migrateGame, SAVE_VERSION } from '../www/js/core/game.js';
+import { GAME_VERSION } from '../www/js/data/version.js';
 import { renderGame, renderSetup } from '../www/js/ui/render.js';
 import { refreshOrders, acceptOrder } from '../www/js/systems/orders.js';
 import { advanceDays } from '../www/js/systems/calendar.js';
@@ -27,12 +28,8 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=(rel)=>fs.readFileSync(path.join(root,rel),'utf8');
 
 const pkg=JSON.parse(read('package.json'));
-assert.equal(pkg.version,'0.18.3');
+assert.equal(pkg.version,GAME_VERSION);
 assert.equal(SAVE_VERSION,19);
-const build=read('BUILD_UPDATE.ps1');
-assert.match(build,/versionCode 1803/);
-assert.match(build,/versionName "0\.18\.3"/);
-assert.match(build,/Hroniki-Aytishnika-v0\.18\.3\.apk/);
 
 // New game and legacy migration contain the complete v18 state.
 const game=createNewGame({name:'Тест 18',specialization:'hardware',avatar:'classic',difficultyId:'normal'});

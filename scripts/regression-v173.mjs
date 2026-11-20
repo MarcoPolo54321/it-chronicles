@@ -12,10 +12,7 @@ const read=(rel)=>fs.readFileSync(path.join(root,rel),'utf8');
 
 const pkg=JSON.parse(read('package.json'));
 assert.match(pkg.version,/^0\.(?:17\.[3-9]|18\.\d+)$/);
-const build=read('BUILD_UPDATE.ps1');
-assert.match(build,/versionCode (?:170[3-9]|18\d{2})/);
-assert.match(build,/versionName "0\.(?:17\.[3-9]|18\.\d+)"/);
-assert.match(build,/Hroniki-Aytishnika-v0\.(?:17\.[3-9]|18\.\d+)\.apk/);
+assert.ok(pkg.androidVersionCode>=1703);
 
 const setup=renderSetup({theme:'dark',specialization:'networking',avatar:'classic',setupSlot:0,playerName:'Тест'});
 assert.ok(setup.includes('Стартовый профессиональный бэкграунд'));

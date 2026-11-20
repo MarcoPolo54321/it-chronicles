@@ -1,3 +1,5 @@
+param([switch]$PrepareOnly)
+
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
@@ -15,7 +17,10 @@ function Run-Command {
     }
 }
 
-Write-Host "=== IT Chronicles 0.18.3 build ===" -ForegroundColor Cyan
+$project = Get-Content -LiteralPath '.\package.json' -Raw -Encoding UTF8 | ConvertFrom-Json
+$version = $project.version
+$versionCode = $project.androidVersionCode
+Write-Host "=== IT Chronicles $version debug build ===" -ForegroundColor Cyan
 
 if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
     throw "Node.js was not found. Restart VSCodium or install Node.js LTS."
@@ -25,56 +30,19 @@ if (-not $env:JAVA_HOME) {
     $androidJbr = "C:\Program Files\Android\Android Studio\jbr"
     if (Test-Path "$androidJbr\bin\java.exe") {
         $env:JAVA_HOME = $androidJbr
-        $env:Path = "$env:JAVA_HOME\bin;$env:Path"
     }
 }
+if ($env:JAVA_HOME -and (Test-Path "$env:JAVA_HOME\bin\java.exe")) {
+    $env:Path = "$env:JAVA_HOME\bin;$env:Path"
+}
 
-if (-not (Get-Command java -ErrorAction SilentlyContinue)) {
+if (-not $PrepareOnly -and -not (Get-Command java -ErrorAction SilentlyContinue)) {
     throw "Java was not found. Check Android Studio and JAVA_HOME."
 }
 
 Write-Host "1/6 Installing dependencies..." -ForegroundColor Yellow
 
-# Repair an incomplete or incompatible node_modules directory left from an older build.
-$coreManifest = Join-Path $PSScriptRoot "node_modules\@capacitor\core\package.json"
-$resetModules = $false
-if (Test-Path (Join-Path $PSScriptRoot "node_modules")) {
-    if (-not (Test-Path $coreManifest)) {
-        $resetModules = $true
-    } else {
-        try {
-            $installedCore = Get-Content $coreManifest -Raw | ConvertFrom-Json
-            $installedVersion = [string]$installedCore.version
-            if (-not $installedVersion.StartsWith("7.")) { $resetModules = $true }
-        }
-        catch {
-            $resetModules = $true
-        }
-    }
-}
-
-if ($resetModules) {
-    Write-Host "Incomplete dependencies were found. Cleaning node_modules..." -ForegroundColor Yellow
-    Remove-Item (Join-Path $PSScriptRoot "node_modules") -Recurse -Force -ErrorAction SilentlyContinue
-}
-
-& npm.cmd install --legacy-peer-deps --no-audit --no-fund
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "The first npm install failed. Performing a clean retry..." -ForegroundColor Yellow
-    Remove-Item (Join-Path $PSScriptRoot "node_modules") -Recurse -Force -ErrorAction SilentlyContinue
-    Remove-Item (Join-Path $PSScriptRoot "package-lock.json") -Force -ErrorAction SilentlyContinue
-    & npm.cmd cache verify | Out-Host
-    & npm.cmd install --legacy-peer-deps --no-audit --no-fund
-    if ($LASTEXITCODE -ne 0) {
-        throw "npm install failed after a clean retry. Exit code: $LASTEXITCODE"
-    }
-}
-
-Write-Host "Installed Capacitor versions:" -ForegroundColor DarkCyan
-& npm.cmd list @capacitor/core @capacitor/android @capacitor/cli @capacitor/app --depth=0 | Out-Host
-if ($LASTEXITCODE -ne 0) {
-    throw "Capacitor dependencies are incomplete. Delete node_modules and run BUILD_UPDATE.bat again."
-}
+Run-Command { npm.cmd ci --no-audit --no-fund } "Dependency installation failed."
 
 if (-not (Test-Path ".\android\gradlew.bat")) {
     Write-Host "2/6 Android platform not found. Creating it..." -ForegroundColor Yellow
@@ -94,10 +62,11 @@ if ($androidSdk -and (Test-Path $androidSdk)) {
     $env:ANDROID_HOME = $androidSdk
     $env:ANDROID_SDK_ROOT = $androidSdk
     $localProperties = Join-Path $PSScriptRoot "android\local.properties"
-    $sdkForGradle = $androidSdk -replace '\\','/'
+    $sdkForGradle = (Resolve-Path -LiteralPath $androidSdk).Path.Replace('\', '/')
+    $sdkForGradle = [regex]::Replace($sdkForGradle, '[^\x00-\x7F]', { param($match) '\u{0:x4}' -f [int][char]$match.Value })
     [System.IO.File]::WriteAllText($localProperties, "sdk.dir=$sdkForGradle`n", (New-Object System.Text.UTF8Encoding($false)))
     Write-Host "Android SDK: $androidSdk" -ForegroundColor Green
-} elseif (-not (Test-Path ".\android\local.properties")) {
+} elseif (-not $PrepareOnly -and -not (Test-Path ".\android\local.properties")) {
     throw "Android SDK was not found. Install Android Studio or set ANDROID_SDK_ROOT."
 }
 
@@ -136,8 +105,8 @@ if (Test-Path $adaptiveIcons) {
 $gradleFile = ".\android\app\build.gradle"
 if (Test-Path $gradleFile) {
     $content = [System.IO.File]::ReadAllText((Resolve-Path $gradleFile))
-    $content = [regex]::Replace($content, 'versionCode\s+\d+', 'versionCode 1803')
-    $content = [regex]::Replace($content, 'versionName\s+"[^"]+"', 'versionName "0.18.3"')
+    $content = [regex]::Replace($content, 'versionCode\s+\d+', "versionCode $versionCode")
+    $content = [regex]::Replace($content, 'versionName\s+"[^"]+"', "versionName `"$version`"")
     $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
     [System.IO.File]::WriteAllText((Resolve-Path $gradleFile), $content, $utf8NoBom)
 }
@@ -151,12 +120,15 @@ if ((Test-Path $gradleProperties) -and
     )
 }
 
-Write-Host "5/6 Stopping old Gradle process..." -ForegroundColor Yellow
+Write-Host "5/6 Running tests..." -ForegroundColor Yellow
+Run-Command { npm.cmd test } "Game tests failed."
+if ($PrepareOnly) {
+    Write-Host "Android project prepared in .\android" -ForegroundColor Green
+    return
+}
 
 Push-Location ".\android"
 try {
-    & .\gradlew.bat --stop | Out-Host
-
     Write-Host "6/6 Building APK..." -ForegroundColor Yellow
     Run-Command {
         .\gradlew.bat assembleDebug --no-daemon --no-watch-fs
@@ -184,12 +156,10 @@ catch {
 }
 
 New-Item -ItemType Directory -Force -Path $downloads | Out-Null
-$releaseName = "Hroniki-Aytishnika-v0.18.3.apk"
-$releaseApk = Join-Path $downloads $releaseName
-Copy-Item $apk $releaseApk -Force
+$debugApk = Join-Path $downloads "Hroniki-Aytishnika-v$version-debug.apk"
+Copy-Item $apk $debugApk -Force
 
 Write-Host ""
 Write-Host "BUILD SUCCESSFUL" -ForegroundColor Green
 Write-Host "Project APK: $apk" -ForegroundColor Cyan
-Write-Host "Release APK: $releaseApk" -ForegroundColor Cyan
-Start-Process explorer.exe "/select,`"$releaseApk`""
+Write-Host "Debug APK: $debugApk" -ForegroundColor Cyan

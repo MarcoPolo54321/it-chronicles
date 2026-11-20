@@ -17,9 +17,9 @@ assert.ok(MARKET_EVENTS_V13.every(x=>Number(x.from||2000)<=2010 && Number(x.to||
 assert.ok(ERA_VISUAL_THEMES_V13.every(x=>Number(x.to||2010)<=2010));
 const game=createNewGame({name:'Тест',specialization:'hardware'});
 assert.ok(game.version>=17);
-const build=fs.readFileSync(path.join(root,'BUILD_UPDATE.ps1'),'utf8');
-assert.match(build,/versionCode (?:170[2-9]|18\d{2})/);
-assert.match(build,/versionName "0\.(?:17\.[2-9]|18\.\d+)"/);
+const pkg=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8'));
+assert.ok(pkg.androidVersionCode>=1702);
+assert.match(pkg.version,/^0\.(?:17\.[2-9]|18\.\d+)$/);
 const render=fs.readFileSync(path.join(root,'www/js/ui/render.js'),'utf8');
 assert.match(render,/постоянный навык сохраняется/);
 assert.doesNotMatch(render,/уменьшается постоянный уровень/);

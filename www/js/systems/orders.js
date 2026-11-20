@@ -168,7 +168,7 @@ function createStandardOrder(game, template) {
     orderType: template.orderType || (template.onSite ? 'onsite' : template.diff === 'epic' ? 'corporate' : chance(.16) ? 'urgent' : 'standard'),
     createdAt: { ...game.calendar },
     businessType: template.businessType || null,
-    advertisingCampaignIds: activeCampaignIds(game,template.businessType?'company':'personal')
+    advertisingCampaignIds: template.recoveryOrder ? [] : activeCampaignIds(game,template.businessType?'company':'personal')
   };
   if(order.advertisingCampaignIds.length)recordAdvertisingLead(game,order.advertisingCampaignIds);
   order.taskTypeId = orderTaskTypeIdV166(order);
@@ -232,7 +232,7 @@ function createBuildOrder(game) {
 function createRecoveryOrderV182(game){
   const template={
     id:'v182_recovery_gig',name:'Срочная домашняя настройка',icon:'',diff:'easy',clientTier:'home',
-    rewardBase:[320,520],energy:6,time:1,skills:{},skillXP:{communication:8,software:8},xp:10,rep:1,chance:.98,items:[]
+    rewardBase:[320,520],energy:6,time:1,skills:{},skillXP:{communication:8,software:8},xp:10,rep:1,chance:.98,items:[],recoveryOrder:true
   };
   const order=createStandardOrder(game,template);
   order.description='Простая заявка без покупки материалов. Подходит, чтобы восстановиться после неудачной серии.';
@@ -252,25 +252,36 @@ export function refreshOrders(game, force = false) {
     applyOrderEconomics(game,order);
     if(order.status==='diagnosis'&&(!order.diagnosticCase?.story||!order.diagnosticCase?.evidence))order.diagnosticCase=caseForOrder(order);
   }
-  if (!force && game.orders.available.length >= Math.max(3,target-1)) return;
-  const existing=new Set([...game.orders.available,...game.orders.active].map(order=>order.templateId));
-  const candidates=ORDER_POOL.filter(template=>templateAvailable(game,template)&&!existing.has(template.id));
-  let guard=0;
-  while(game.orders.available.length<target&&candidates.length&&guard<100){
-    guard+=1;
-    const template=chooseCandidateV166(game,candidates,game.orders.available.length,target);
-    const index=candidates.indexOf(template);
-    if(index>=0)candidates.splice(index,1);
-    const order=createStandardOrder(game,template);
-    if(order)game.orders.available.push(order);
+  if (force || game.orders.available.length < Math.max(3,target-1)) {
+    const existing=new Set([...game.orders.available,...game.orders.active].map(order=>order.templateId));
+    const candidates=ORDER_POOL.filter(template=>templateAvailable(game,template)&&!existing.has(template.id));
+    while(game.orders.available.length<target&&candidates.length){
+      const template=chooseCandidateV166(game,candidates,game.orders.available.length,target);
+      candidates.splice(candidates.indexOf(template),1);
+      const order=createStandardOrder(game,template);
+      if(order)game.orders.available.push(order);
+    }
+    if(game.orders.available.length<target&&skillLevel(game,'hardware')>=2){
+      const build=createBuildOrder(game);
+      if(build)game.orders.available.push(build);
+    }
   }
-  if(game.orders.available.length<target&&skillLevel(game,'hardware')>=2){
-    const build=createBuildOrder(game);
-    if(build)game.orders.available.push(build);
-  }
-  const hasReady=game.orders.available.some((item)=>candidateGap(game,item)<=0&&missingOrderItems(game,item).length===0);
+  const canVisit=getVehicle(game).canVisit;
+  const hasReady=game.orders.available.some((item)=>(!item.onSite||canVisit)&&candidateGap(game,item)<=0&&missingOrderItems(game,item).length===0);
   const needsSafetyNet=Number(game.player?.cash||0)<1200||(!hasReady&&!game.orders.active.length);
-  if(needsSafetyNet&&!game.orders.available.some((item)=>item.templateId==='v182_recovery_gig'))game.orders.available.unshift(createRecoveryOrderV182(game));
+  if(needsSafetyNet&&!game.orders.available.some((item)=>item.recoveryOrder)){
+    if(game.orders.available.length>=target){
+      let replacement=-1;
+      for(let index=game.orders.available.length-1;index>=0;index--){
+        const order=game.orders.available[index];
+        if(order.orderType==='warranty')continue;
+        if(replacement<0)replacement=index;
+        if(!order.advertisingCampaignIds?.length){replacement=index;break;}
+      }
+      if(replacement>=0)game.orders.available.splice(replacement,1);
+    }
+    game.orders.available.unshift(createRecoveryOrderV182(game));
+  }
   game.orders.available=game.orders.available.slice(0,10);
 }
 

@@ -11,7 +11,7 @@ import { buyUpgrade, getEra, maxEnergy } from './systems/progression.js';
 import { processSimulationTick, resetIdleReminder } from './systems/simulation.js';
 import { buyFleaOffer, repairFleaItem, salvageFleaItem, searchFleaMarket, sellScrap } from './systems/flea-market.js';
 import { buyWorkspaceUpgrade } from './systems/workspace.js';
-import { renderGame, renderProfiles, renderSetup } from './ui/render.js';
+import { renderGame, renderProfiles, renderSetup, renderShopResults } from './ui/render.js';
 import { HERO_AVATARS, heroAvatarById } from './data/avatars.js';
 import { assignEmployee, cancelContract, endingSummary, ensureV08, fireEmployee, hireEmployee, resolveDecisionEvent, runPcTest, selectAdvancedSpecialization, setActivityPlan, signContract, visitCityPoint } from './systems/v08.js';
 import { buyLegacyUpgrade, challengeStatusV13, diagnosticReport, ensureV13, openDepartment, resolveEmployeeEvent, setRestockRule, toggleAutomationRule, trainEmployee } from './systems/v13.js';
@@ -61,7 +61,7 @@ const ui = {
   companyType: 'service_repair',
   ledgerFilter: 'all',
   financeReportIndex: 0,
-  theme: localStorage.getItem('itc_theme') === 'light' ? 'light' : 'dark'
+  theme: savedTheme()
 };
 
 let profiles = loadProfiles();
@@ -87,7 +87,11 @@ function capacitorAppPlugin() {
 }
 
 function performExit() {
-  persist();
+  if (!persist()) {
+    ui.modal = null;
+    render(true);
+    return;
+  }
   allowBrowserExit = true;
   const appPlugin = capacitorAppPlugin();
   if (appPlugin?.exitApp) {
@@ -295,21 +299,40 @@ window.addEventListener('unhandledrejection', (event) => {
   game.stability.sessionErrors = game.stability.sessionErrors.slice(0, 20);
 });
 
+function savedTheme() {
+  try { return localStorage.getItem('itc_theme') === 'light' ? 'light' : 'dark'; }
+  catch { return 'dark'; }
+}
+
 function applyTheme(theme, save = true) {
   ui.theme = theme === 'light' ? 'light' : 'dark';
   document.documentElement.dataset.theme = ui.theme;
   document.documentElement.style.colorScheme = ui.theme;
   const themeMeta = document.querySelector('meta[name="theme-color"]');
   if (themeMeta) themeMeta.content = ui.theme === 'light' ? '#e9dcc1' : '#080a09';
-  if (save) localStorage.setItem('itc_theme', ui.theme);
+  if (save) {
+    try { localStorage.setItem('itc_theme', ui.theme); }
+    catch (error) { console.warn('Не удалось запомнить тему', error); }
+  }
   if (game) game.settings.themeMode = ui.theme;
 }
 
 applyTheme(ui.theme, false);
 
 function persist() {
-  if (!game) return;
-  saveProfile(profiles, activeIndex, game);
+  return !game || showSaveResult(saveProfile(profiles, activeIndex, game));
+}
+
+function showSaveResult(saved) {
+  document.getElementById('save-status').hidden = saved;
+  return saved;
+}
+
+function replaceProfile(index, profile) {
+  const nextProfiles = [...profiles];
+  if (!showSaveResult(saveProfile(nextProfiles, index, profile))) return false;
+  profiles = nextProfiles;
+  return true;
 }
 
 function positionCoachMark() {
@@ -384,7 +407,7 @@ function toast(text, tone = '') {
   clearTimeout(toastTimer);
   toastTimer = window.setTimeout(() => {
     ui.toast = null;
-    render(true);
+    root.querySelector('.toast')?.remove();
   }, 2400);
 }
 
@@ -457,6 +480,15 @@ function captureSetupDraft() {
   if (input) ui.playerName = input.value.slice(0, 20);
 }
 
+function renderSetupSelection(button) {
+  const restoreFocus = document.activeElement === button;
+  render(true);
+  if (!restoreFocus) return;
+  const replacement = [...root.querySelectorAll('button[data-action]')].find((candidate) =>
+    candidate.dataset.action === button.dataset.action && candidate.dataset.value === button.dataset.value);
+  replacement?.focus({ preventScroll: true });
+}
+
 function cycleSetupAvatar(direction = 1) {
   const currentIndex = HERO_AVATARS.findIndex((item) => item.id === ui.avatar);
   const safeIndex = currentIndex >= 0 ? currentIndex : 0;
@@ -510,9 +542,7 @@ function handleAction(action, element) {
       return;
     case 'delete-profile':
       if (window.confirm('Удалить этот профиль без возможности восстановления?')) {
-        deleteProfile(profiles, index);
-        profiles = loadProfiles();
-        render();
+        if (showSaveResult(deleteProfile(profiles, index))) render();
       }
       return;
     case 'back-profiles':
@@ -533,47 +563,48 @@ function handleAction(action, element) {
       return;
     case 'select-difficulty':
       ui.difficultyId = ['calm','normal','realistic'].includes(value) ? value : 'normal';
-      render();
+      renderSetupSelection(element);
       return;
     case 'select-avatar':
       ui.avatar = heroAvatarById(value || 'classic').id;
-      render();
+      renderSetupSelection(element);
       return;
     case 'previous-background':
       cycleSetupBackground(-1);
-      render();
+      renderSetupSelection(element);
       return;
     case 'next-background':
       cycleSetupBackground(1);
-      render();
+      renderSetupSelection(element);
       return;
     case 'previous-avatar':
       cycleSetupAvatar(-1);
-      render();
+      renderSetupSelection(element);
       return;
     case 'next-avatar':
       cycleSetupAvatar(1);
-      render();
+      renderSetupSelection(element);
       return;
     case 'create-profile': {
       const name = (currentInputValue('playerName') || ui.playerName || '').trim();
       const avatarId = heroAvatarById(ui.avatar || 'classic').id;
-      game = createNewGame({ name: name || 'Новичок', specialization: ui.specialization, mode:'campaign', challengeId:null, avatar: avatarId, difficultyId:ui.difficultyId || 'normal' });
-      ensureV160(game);
-      ensureCareerV162(game);
-      ensureAdvertisingV162(game);
-      ensureV165(game);
-      ensureV166(game); ensureV169(game); ensureV180(game); ensureV182(game);
-      validateGameState(game,true);
-      game.profile.avatar = avatarId;
-      ensureV08(game);
-      ensureV13(game);
-      game.settings.themeMode = ui.theme;
-      profiles[ui.setupSlot] = game;
+      const nextGame = createNewGame({ name: name || 'Новичок', specialization: ui.specialization, mode:'campaign', challengeId:null, avatar: avatarId, difficultyId:ui.difficultyId || 'normal' });
+      ensureV160(nextGame);
+      ensureCareerV162(nextGame);
+      ensureAdvertisingV162(nextGame);
+      ensureV165(nextGame);
+      ensureV166(nextGame); ensureV169(nextGame); ensureV180(nextGame); ensureV182(nextGame);
+      ensureV08(nextGame);
+      ensureV13(nextGame);
+      nextGame.settings.themeMode = ui.theme;
+      refreshOrders(nextGame, true);
+      const nextProfiles = [...profiles];
+      nextProfiles[ui.setupSlot] = nextGame;
+      if (!showSaveResult(saveProfiles(nextProfiles))) return;
+      profiles = nextProfiles;
+      game = nextGame;
       activeIndex = ui.setupSlot;
       setActiveProfileIndex(activeIndex);
-      refreshOrders(game, true);
-      saveProfiles(profiles);
       ui.mode = 'game';
       ui.tab = 'home';
       ui.modal = { type: 'tutorial', step: 0 };
@@ -655,7 +686,8 @@ function handleAction(action, element) {
     case 'toggle-theme':
       applyTheme(ui.theme === 'dark' ? 'light' : 'dark');
       persist();
-      render(true);
+      if (ui.mode === 'setup') renderSetupSelection(element);
+      else render(true);
       return;
     case 'tutorial-next': {
       const next = Number(element.dataset.step || 0) + 1;
@@ -1035,14 +1067,20 @@ function handleAction(action, element) {
     case 'test-pc': commit(runPcTest(game)); return;
     case 'new-career-plus': {
       const summary=endingSummary(game); const old=game;
-      game=createNewGame({name:old.profile.name,specialization:old.profile.specialization,avatar:old.profile.avatar||'classic',mode:'campaign',challengeId:null,difficultyId:old.mode?.difficultyId||'normal',legacyPoints:(old.legacy.points||0)+summary.legacyPoints,legacyCareers:(old.legacy.careers||0)+1,legacyRewards:old.legacy.rewards||[]});
-      applyNewGamePlusBackground(game,old);
-      ensureV08(game); ensureV13(game); ensureV160(game); ensureV166(game); ensureV169(game); ensureV180(game); ensureV182(game); game.replay.legacyUpgrades={...(old.replay?.legacyUpgrades||{})}; game.replay.appliedLegacySignature=''; ensureV13(game); game.player.cash += summary.legacyPoints*500; profiles[activeIndex]=game; persist(); ui.tab='home'; ui.morePage='home'; ui.modal=null; render(); toast('Новая карьера+ началась'); return;
+      const nextGame=createNewGame({name:old.profile.name,specialization:old.profile.specialization,avatar:old.profile.avatar||'classic',mode:'campaign',challengeId:null,difficultyId:old.mode?.difficultyId||'normal',legacyPoints:(old.legacy.points||0)+summary.legacyPoints,legacyCareers:(old.legacy.careers||0)+1,legacyRewards:old.legacy.rewards||[]});
+      applyNewGamePlusBackground(nextGame,old);
+      ensureV08(nextGame); ensureV13(nextGame); ensureV160(nextGame); ensureV166(nextGame); ensureV169(nextGame); ensureV180(nextGame); ensureV182(nextGame);
+      nextGame.replay.legacyUpgrades={...(old.replay?.legacyUpgrades||{})};
+      nextGame.replay.appliedLegacySignature='';
+      ensureV13(nextGame);
+      nextGame.player.cash += summary.legacyPoints*500;
+      if (!replaceProfile(activeIndex, nextGame)) return;
+      game=nextGame; ui.tab='home'; ui.morePage='home'; ui.modal=null; render(); toast('Новая карьера+ началась'); return;
     }
     case 'continue-after-2010': ui.modal=null; commit(continueFrozen2010(game)); return;
     case 'quick-save': {
       const report=validateGameState(game,true);
-      persist();
+      if (!persist()) { playTone('error'); return; }
       playTone('success');
       toast(report.repairs.length?`Игра сохранена · исправлено ${report.repairs.length}`:'Игра сохранена · профиль проверен');
       return;
@@ -1078,7 +1116,10 @@ function handleAction(action, element) {
       const result=importProfile(currentInputValue('importSaveText'));
       if(!result.ok){toast(result.message,'danger');return;}
       createProfilesBackup(profiles,'before-import');
-      game=result.game;ensureV13(game);ensureV160(game);ensureV165(game);ensureV166(game); ensureV169(game); ensureV180(game); ensureV182(game);profiles[activeIndex]=game;persist();ui.modal=null;render();toast('Сохранение импортировано');return;
+      const nextGame=result.game;
+      ensureV13(nextGame);ensureV160(nextGame);ensureV165(nextGame);ensureV166(nextGame);ensureV169(nextGame);ensureV180(nextGame);ensureV182(nextGame);
+      if (!replaceProfile(activeIndex, nextGame)) return;
+      game=nextGame;ui.modal=null;render();toast('Сохранение импортировано');return;
     }
     case 'cancel-exit':
       ui.modal = ui.modal?.previousModal || null;
@@ -1092,15 +1133,14 @@ function handleAction(action, element) {
       render(true);
       return;
     case 'switch-profile':
-      persist();
+      if (!persist()) return;
       game = null;
       ui.mode = 'profiles';
       render();
       return;
     case 'reset-current-profile':
       if (window.confirm('Удалить текущую карьеру?')) {
-        deleteProfile(profiles, activeIndex);
-        profiles = loadProfiles();
+        if (!showSaveResult(deleteProfile(profiles, activeIndex))) return;
         game = null;
         ui.mode = 'profiles';
         render();
@@ -1148,7 +1188,10 @@ root.addEventListener('input', (event) => {
     ui.shopQuery = event.target.value;
     ui.shopPage = 1;
     clearTimeout(shopDebounce);
-    shopDebounce = window.setTimeout(() => render(true), 160);
+    shopDebounce = window.setTimeout(() => {
+      const results = root.querySelector('#shopResults');
+      if (results && game) results.innerHTML = renderShopResults(game, ui);
+    }, 160);
   }
   if (event.target.id === 'settingVolume' && game) {
     ensureV13(game);
@@ -1219,6 +1262,7 @@ window.setInterval(() => {
   refreshOrders(game);
   persist();
   if(modalWasOpen){refreshLiveIndicators();return;}
+  if (document.activeElement?.id === 'shopSearch') { refreshLiveIndicators(); return; }
   if (result.energyWarning) ui.modal = { type:'energy-warning' };
   else if (result.idlePrompt) ui.modal = { type: 'idle-reminder', message: result.message };
   if (!ui.modal && game.world?.activeEvent) ui.modal = { type:'decision-event' };
