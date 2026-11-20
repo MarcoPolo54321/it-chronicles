@@ -1,0 +1,152 @@
+[
+  {
+    "name": "Банк",
+    "file": "./assets/ui-v181/clients/bank.webp",
+    "slug": "bank"
+  },
+  {
+    "name": "Блогер",
+    "file": "./assets/ui-v181/clients/bloger.webp",
+    "slug": "bloger"
+  },
+  {
+    "name": "Веб-студия",
+    "file": "./assets/ui-v181/clients/veb_studiya.webp",
+    "slug": "veb_studiya"
+  },
+  {
+    "name": "Владелец малого бизнеса",
+    "file": "./assets/ui-v181/clients/vladelets_malogo_biznesa.webp",
+    "slug": "vladelets_malogo_biznesa"
+  },
+  {
+    "name": "Геймер",
+    "file": "./assets/ui-v181/clients/geymer.webp",
+    "slug": "geymer"
+  },
+  {
+    "name": "Государственное учреждение",
+    "file": "./assets/ui-v181/clients/gosudarstvennoe_uchrezhdenie.webp",
+    "slug": "gosudarstvennoe_uchrezhdenie"
+  },
+  {
+    "name": "Государственный проект",
+    "file": "./assets/ui-v181/clients/gosudarstvennyy_proekt.webp",
+    "slug": "gosudarstvennyy_proekt"
+  },
+  {
+    "name": "Домашний пользователь",
+    "file": "./assets/ui-v181/clients/domashniy_polzovatel.webp",
+    "slug": "domashniy_polzovatel"
+  },
+  {
+    "name": "Игровая студия",
+    "file": "./assets/ui-v181/clients/igrovaya_studiya.webp",
+    "slug": "igrovaya_studiya"
+  },
+  {
+    "name": "Интернет-провайдер",
+    "file": "./assets/ui-v181/clients/internet_provayder.webp",
+    "slug": "internet_provayder"
+  },
+  {
+    "name": "Магазин электроники",
+    "file": "./assets/ui-v181/clients/magazin_elektroniki.webp",
+    "slug": "magazin_elektroniki"
+  },
+  {
+    "name": "Медицинская клиника",
+    "file": "./assets/ui-v181/clients/meditsinskaya_klinika.webp",
+    "slug": "meditsinskaya_klinika"
+  },
+  {
+    "name": "Международная корпорация",
+    "file": "./assets/ui-v181/clients/mezhdunarodnaya_korporatsiya.webp",
+    "slug": "mezhdunarodnaya_korporatsiya"
+  },
+  {
+    "name": "Музыкант",
+    "file": "./assets/ui-v181/clients/muzykant.webp",
+    "slug": "muzykant"
+  },
+  {
+    "name": "Офис компании",
+    "file": "./assets/ui-v181/clients/ofis_kompanii.webp",
+    "slug": "ofis_kompanii"
+  },
+  {
+    "name": "Пенсионер",
+    "file": "./assets/ui-v181/clients/pensioner.webp",
+    "slug": "pensioner"
+  },
+  {
+    "name": "Производство",
+    "file": "./assets/ui-v181/clients/proizvodstvo.webp",
+    "slug": "proizvodstvo"
+  },
+  {
+    "name": "Серверная компания",
+    "file": "./assets/ui-v181/clients/servernaya_kompaniya.webp",
+    "slug": "servernaya_kompaniya"
+  },
+  {
+    "name": "Стартап",
+    "file": "./assets/ui-v181/clients/startap.webp",
+    "slug": "startap"
+  },
+  {
+    "name": "Студент",
+    "file": "./assets/ui-v181/clients/student.webp",
+    "slug": "student"
+  },
+  {
+    "name": "Телеком-компания",
+    "file": "./assets/ui-v181/clients/telekom_kompaniya.webp",
+    "slug": "telekom_kompaniya"
+  },
+  {
+    "name": "Университет",
+    "file": "./assets/ui-v181/clients/universitet.webp",
+    "slug": "universitet"
+  },
+  {
+    "name": "Финансовая организация",
+    "file": "./assets/ui-v181/clients/finansovaya_organizatsiya.webp",
+    "slug": "finansovaya_organizatsiya"
+  },
+  {
+    "name": "Фотограф",
+    "file": "./assets/ui-v181/clients/fotograf.webp",
+    "slug": "fotograf"
+  },
+  {
+    "name": "Фрилансер",
+    "file": "./assets/ui-v181/clients/frilanser.webp",
+    "slug": "frilanser"
+  },
+  {
+    "name": "Центр обработки данных",
+    "file": "./assets/ui-v181/clients/tsentr_obrabotki_dannyh.webp",
+    "slug": "tsentr_obrabotki_dannyh"
+  },
+  {
+    "name": "Школа",
+    "file": "./assets/ui-v181/clients/shkola.webp",
+    "slug": "shkola"
+  },
+  {
+    "name": "Школьник",
+    "file": "./assets/ui-v181/clients/shkolnik.webp",
+    "slug": "shkolnik"
+  },
+  {
+    "name": "Компьютерный клуб",
+    "file": "./assets/ui-v181/clients/kompyuternyy_klub.webp",
+    "slug": "kompyuternyy_klub"
+  },
+  {
+    "name": "SaaS-компания",
+    "file": "./assets/ui-v181/clients/saas_kompaniya.webp",
+    "slug": "saas_kompaniya"
+  }
+]

@@ -1,0 +1,23 @@
+Версия 0.18.0
+
+Основные новые и изменённые файлы:
+- www/js/data/v180.js
+- www/js/systems/v180.js
+- www/js/systems/orders.js
+- www/js/systems/calendar.js
+- www/js/systems/v08.js
+- www/js/systems/v169.js
+- www/js/core/game.js
+- www/js/ui/render.js
+- www/js/app.js
+- www/css/app.css
+- www/assets/ui-v180/advertising/*.webp
+- scripts/regression-v180.mjs
+- package.json
+- BUILD_UPDATE.ps1
+- README.md
+- CHANGELOG_v0.18.0.txt
+- Information/VERSION_0.18.0.md
+- ICON_PALETTE_AUDIT_0.18.0.txt
+- BUILD_VALIDATION_0.18.0.txt
+- BUILD_MANIFEST_0.18.0.json

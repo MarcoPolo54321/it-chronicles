@@ -1,0 +1,1351 @@
+ХРОНИКИ АЙТИШНИКА 0.16.11 — АУДИТ ОТСУТСТВУЮЩИХ ИЗОБРАЖЕНИЙ
+
+Критерий аудита: в список попали сущности, которые видны игроку карточкой/строкой и сейчас используют эмодзи, текстовую заглушку или общее изображение категории вместо собственной иллюстрации.
+Это не означает, что интерфейс сломан: для большинства позиций работает запасная иконка. Список предназначен для создания индивидуальных изображений.
+
+Фактически битых ссылок на уже назначенные изображения: 0.
+- Битых ссылок не найдено.
+
+## ПРИОРИТЕТ 1. Комплектующие без собственной картинки (353 из 374)
+### Процессоры (83)
+- cpu_cel_533 — Celeron 533 MHz
+- cpu_p3_600 — Pentium III 600E
+- cpu_p3_800 — Pentium III 800 EB
+- cpu_p3_1g — Pentium III 1GHz
+- cpu_p3_slot1 — Pentium III 550 (Slot1)
+- cpu_k6_500 — AMD K6-2 500
+- cpu_athlon_700 — AMD Athlon 700 (Slot A)
+- cpu_athlon_1g — AMD Athlon 1GHz (Slot A)
+- cpu_duron_700 — AMD Duron 700
+- cpu_athlon_xp1700 — Athlon XP 1700+
+- cpu_athlon_xp2000 — Athlon XP 2000+
+- cpu_athlon_xp2500 — Athlon XP 2500+ (Barton)
+- cpu_p4_1_6 — Pentium 4 1.6 GHz
+- cpu_p4_2_0 — Pentium 4 2.0 GHz
+- cpu_p4_2_4 — Pentium 4 2.4 GHz
+- cpu_p4_2_8 — Pentium 4 2.8 GHz
+- cpu_cel_d — Celeron D 2.8 GHz
+- cpu_p4_ht_3g — Pentium 4 HT 3.0 GHz
+- cpu_p4_660 — Pentium 4 660 (3.6 GHz HT)
+- cpu_pentd_820 — Pentium D 820 (2x2.8GHz)
+- cpu_pentd_940 — Pentium D 940 (2x3.2GHz)
+- cpu_c2d_e4300 — Core 2 Duo E4300
+- cpu_c2d_e6300 — Core 2 Duo E6300
+- cpu_c2d_e6600 — Core 2 Duo E6600
+- cpu_c2d_e8400 — Core 2 Duo E8400
+- cpu_c2q_q6600 — Core 2 Quad Q6600
+- cpu_c2q_q9400 — Core 2 Quad Q9400
+- cpu_c2q_q9550 — Core 2 Quad Q9550
+- cpu_ath64_3200 — Athlon 64 3200+
+- cpu_ath64_3500 — Athlon 64 3500+
+- cpu_ath64x2_4200 — Athlon 64 X2 4200+
+- cpu_ath64x2_5000 — Athlon 64 X2 5000+
+- cpu_ph_9500 — Phenom X4 9500
+- cpu_i7_920 — Core i7-920
+- cpu_i7_950 — Core i7-950
+- cpu_i7_980x — Core i7-980X Extreme
+- cpu_ph2_x4_810 — Phenom II X4 810
+- cpu_ph2_x4_955 — Phenom II X4 955 BE
+- cpu_ph2_x6_1055 — Phenom II X6 1055T
+- cpu_ph2_x6_1090 — Phenom II X6 1090T BE
+- cpu_i3_2100 — Core i3-2100
+- cpu_i5_2300 — Core i5-2300
+- cpu_i5_2500k — Core i5-2500K
+- cpu_i7_2600k — Core i7-2600K
+- cpu_i5_3570k — Core i5-3570K (Ivy)
+- cpu_i7_3770k — Core i7-3770K (Ivy)
+- cpu_fx4100 — AMD FX-4100
+- cpu_fx6300 — AMD FX-6300
+- cpu_fx8320 — AMD FX-8320
+- cpu_fx8350 — AMD FX-8350
+- cpu_i3_4130 — Core i3-4130
+- cpu_i5_4460 — Core i5-4460
+- cpu_i5_4690k — Core i5-4690K
+- cpu_i7_4770k — Core i7-4770K
+- cpu_i7_4790k — Core i7-4790K
+- cpu_i5_6600k — Core i5-6600K (Skylake)
+- cpu_i7_6700k — Core i7-6700K (Skylake)
+- cpu_i5_7600k — Core i5-7600K (Kaby)
+- cpu_r3_1200 — Ryzen 3 1200
+- cpu_r5_1400 — Ryzen 5 1400
+- cpu_r5_1600 — Ryzen 5 1600
+- cpu_r7_1700 — Ryzen 7 1700
+- cpu_r7_1800x — Ryzen 7 1800X
+- cpu_r5_2600 — Ryzen 5 2600
+- cpu_r7_2700x — Ryzen 7 2700X
+- cpu_r5_3600 — Ryzen 5 3600
+- cpu_r9_3900x — Ryzen 9 3900X
+- cpu_i5_8400 — Core i5-8400
+- cpu_i7_8700k — Core i7-8700K
+- cpu_i9_9900k — Core i9-9900K
+- cpu_r5_5600x — Ryzen 5 5600X
+- cpu_r7_5800x — Ryzen 7 5800X
+- cpu_r9_5900x — Ryzen 9 5900X
+- cpu_i5_10400 — Core i5-10400F
+- cpu_i7_10700k — Core i7-10700K
+- cpu_i9_10900k — Core i9-10900K
+- cpu_i5_12600k — Core i5-12600K (Alder)
+- cpu_i9_12900k — Core i9-12900K
+- cpu_i5_13600k — Core i5-13600K (Raptor)
+- cpu_i9_13900k — Core i9-13900K
+- cpu_r5_7600x — Ryzen 5 7600X
+- cpu_r7_7700x — Ryzen 7 7700X
+- cpu_r9_7950x — Ryzen 9 7950X
+### Видеокарты (79)
+- gpu_gf2_mx — GeForce 2 MX 200
+- gpu_gf2_gts — GeForce 2 GTS
+- gpu_gf3_ti200 — GeForce 3 Ti 200
+- gpu_gf3_ti500 — GeForce 3 Ti 500
+- gpu_gf4_ti4200 — GeForce 4 Ti 4200
+- gpu_gf4_ti4600 — GeForce 4 Ti 4600
+- gpu_r8500 — Radeon 8500
+- gpu_r9200 — Radeon 9200
+- gpu_r9600 — Radeon 9600 Pro
+- gpu_r9800 — Radeon 9800 Pro
+- gpu_gf6200 — GeForce 6200
+- gpu_gf6600 — GeForce 6600
+- gpu_gf6600gt — GeForce 6600 GT
+- gpu_gf6800 — GeForce 6800 GT
+- gpu_gf7600 — GeForce 7600 GT
+- gpu_gf7800gt — GeForce 7800 GT
+- gpu_gf7900gtx — GeForce 7900 GTX
+- gpu_rx1600 — Radeon X1600 XT
+- gpu_rx1800 — Radeon X1800 XL
+- gpu_rx1950 — Radeon X1950 Pro
+- gpu_gf8600 — GeForce 8600 GT
+- gpu_gf8800gts — GeForce 8800 GTS 640
+- gpu_gf8800gtx — GeForce 8800 GTX
+- gpu_gf9600 — GeForce 9600 GT
+- gpu_gf9800 — GeForce 9800 GT
+- gpu_gtx260 — GeForce GTX 260
+- gpu_gtx280 — GeForce GTX 280
+- gpu_hd4850 — Radeon HD 4850
+- gpu_hd4870 — Radeon HD 4870
+- gpu_hd5770 — Radeon HD 5770
+- gpu_hd5850 — Radeon HD 5850
+- gpu_hd5870 — Radeon HD 5870
+- gpu_gtx460 — GeForce GTX 460
+- gpu_gtx470 — GeForce GTX 470
+- gpu_gtx480 — GeForce GTX 480
+- gpu_gtx560ti — GeForce GTX 560 Ti
+- gpu_gtx570 — GeForce GTX 570
+- gpu_gtx580 — GeForce GTX 580
+- gpu_gtx660 — GeForce GTX 660
+- gpu_gtx670 — GeForce GTX 670
+- gpu_gtx680 — GeForce GTX 680
+- gpu_hd6870 — Radeon HD 6870
+- gpu_hd6950 — Radeon HD 6950
+- gpu_hd7850 — Radeon HD 7850
+- gpu_hd7970 — Radeon HD 7970
+- gpu_r9_280x — Radeon R9 280X
+- gpu_r9_290x — Radeon R9 290X
+- gpu_gtx750ti — GeForce GTX 750 Ti
+- gpu_gtx960 — GeForce GTX 960
+- gpu_gtx970 — GeForce GTX 970
+- gpu_gtx980 — GeForce GTX 980
+- gpu_gtx980ti — GeForce GTX 980 Ti
+- gpu_gtx1050ti — GeForce GTX 1050 Ti
+- gpu_gtx1060 — GeForce GTX 1060 6GB
+- gpu_gtx1070 — GeForce GTX 1070
+- gpu_gtx1080 — GeForce GTX 1080
+- gpu_gtx1080ti — GeForce GTX 1080 Ti
+- gpu_rx470 — Radeon RX 470
+- gpu_rx480 — Radeon RX 480
+- gpu_rx580 — Radeon RX 580
+- gpu_vega56 — Radeon RX Vega 56
+- gpu_vega64 — Radeon RX Vega 64
+- gpu_rtx2060 — GeForce RTX 2060
+- gpu_rtx2070 — GeForce RTX 2070
+- gpu_rtx2080 — GeForce RTX 2080
+- gpu_rtx2080ti — GeForce RTX 2080 Ti
+- gpu_rx5700 — Radeon RX 5700 XT
+- gpu_rtx3060 — GeForce RTX 3060
+- gpu_rtx3070 — GeForce RTX 3070
+- gpu_rtx3080 — GeForce RTX 3080
+- gpu_rtx3090 — GeForce RTX 3090
+- gpu_rx6600 — Radeon RX 6600 XT
+- gpu_rx6800 — Radeon RX 6800 XT
+- gpu_rtx4060 — GeForce RTX 4060
+- gpu_rtx4070 — GeForce RTX 4070
+- gpu_rtx4080 — GeForce RTX 4080
+- gpu_rtx4090 — GeForce RTX 4090
+- gpu_rx7800 — Radeon RX 7800 XT
+- gpu_rx7900 — Radeon RX 7900 XTX
+### Оперативная память (23)
+- ram_sd32 — SDRAM 32MB
+- ram_sd64 — SDRAM 64MB
+- ram_sd128 — SDRAM 128MB
+- ram_sd256 — SDRAM 256MB
+- ram_ddr256 — DDR 256MB
+- ram_ddr512 — DDR 512MB
+- ram_ddr1g — DDR 1GB
+- ram_ddr2_512 — DDR2 512MB
+- ram_ddr2_1g — DDR2 1GB
+- ram_ddr2_2g — DDR2 2GB
+- ram_ddr2_4g — DDR2 4GB (2x2GB)
+- ram_ddr3_1g — DDR3 1GB
+- ram_ddr3_2g — DDR3 2GB
+- ram_ddr3_4g — DDR3 4GB
+- ram_ddr3_8g — DDR3 8GB
+- ram_ddr3_16g — DDR3 16GB (2x8GB)
+- ram_ddr4_4g — DDR4 4GB
+- ram_ddr4_8g — DDR4 8GB
+- ram_ddr4_16g — DDR4 16GB
+- ram_ddr4_32g — DDR4 32GB
+- ram_ddr5_16g — DDR5 16GB
+- ram_ddr5_32g — DDR5 32GB
+- ram_ddr5_64g — DDR5 64GB
+### Накопители (31)
+- hdd_6g — HDD 6GB
+- hdd_10g — HDD 10GB
+- hdd_20g — HDD 20GB
+- hdd_40g — HDD 40GB
+- hdd_60g — HDD 60GB
+- hdd_80g — HDD 80GB
+- hdd_120g — HDD 120GB
+- hdd_160g — HDD 160GB
+- hdd_250g — HDD 250GB
+- hdd_320g — HDD 320GB
+- hdd_500g — HDD 500GB
+- hdd_1t — HDD 1TB
+- hdd_2t — HDD 2TB
+- hdd_3t — HDD 3TB
+- hdd_4t — HDD 4TB
+- hdd_8t — HDD 8TB
+- ssd_32g — SSD 32GB (первые!)
+- ssd_64g — SSD 64GB
+- ssd_120g — SSD 120GB
+- ssd_240g — SSD 240GB
+- ssd_480g — SSD 480GB
+- ssd_960g — SSD 960GB
+- nvme_256 — NVMe M.2 256GB
+- nvme_512 — NVMe M.2 512GB
+- nvme_1t — NVMe M.2 1TB
+- nvme_2t — NVMe Gen4 2TB
+- nvme_4t — NVMe Gen5 4TB
+- floppy — Дисковод 3.5"
+- cdrom — CD-ROM 52x
+- dvdrom — DVD-ROM/RW
+- bluray — Blu-ray привод
+### Материнские платы (36)
+- mb_slot1 — Intel 440BX (Slot1)
+- mb_s370_815 — Intel i815 (Socket370)
+- mb_s370_694 — VIA 694X (Socket370)
+- mb_s7_via — VIA MVP3 (Socket7)
+- mb_slota — VIA KX133 (Slot A)
+- mb_s462_via — VIA KT266 (Socket462)
+- mb_s462_nf — nForce2 (Socket462)
+- mb_478_845 — Intel 845 (Socket478)
+- mb_478_865 — Intel 865PE (Socket478)
+- mb_775_945 — Intel 945G (LGA775)
+- mb_775_965 — Intel P965 (LGA775)
+- mb_775_680i — nForce 680i SLI (LGA775)
+- mb_775_p45 — Intel P45 (LGA775)
+- mb_am2_690 — AMD 690G (AM2)
+- mb_am2_780 — AMD 780G (AM2)
+- mb_1366_x58 — Intel X58 (LGA1366)
+- mb_am3_870 — AMD 870 (AM3)
+- mb_am3_990fx — AMD 990FX (AM3+)
+- mb_1155_h61 — Intel H61 (LGA1155)
+- mb_1155_p67 — Intel P67 (LGA1155)
+- mb_1155_z77 — Intel Z77 (LGA1155)
+- mb_1150_h81 — Intel H81 (LGA1150)
+- mb_1150_z97 — Intel Z97 (LGA1150)
+- mb_1151_h110 — Intel H110 (LGA1151)
+- mb_1151_z170 — Intel Z170 (LGA1151)
+- mb_am4_a320 — AMD A320 (AM4)
+- mb_am4_b450 — AMD B450 (AM4)
+- mb_am4_x570 — AMD X570 (AM4)
+- mb_1151v2_b360 — Intel B360 (LGA1151v2)
+- mb_1151v2_z390 — Intel Z390 (LGA1151v2)
+- mb_1200_b460 — Intel B460 (LGA1200)
+- mb_1200_z490 — Intel Z490 (LGA1200)
+- mb_1700_b660 — Intel B660 (LGA1700)
+- mb_1700_z690 — Intel Z690 (LGA1700)
+- mb_am5_b650 — AMD B650 (AM5)
+- mb_am5_x670 — AMD X670E (AM5)
+### Блоки питания (15)
+- psu_200 — БП 200W ATX
+- psu_250 — БП 250W ATX
+- psu_300 — БП 300W
+- psu_350 — БП 350W
+- psu_400 — БП 400W
+- psu_450 — БП 450W 80+
+- psu_500 — БП 500W 80+
+- psu_550 — БП 550W Bronze
+- psu_600 — БП 600W Gold
+- psu_650 — БП 650W Gold
+- psu_750 — БП 750W Gold
+- psu_850 — БП 850W Platinum
+- psu_1000 — БП 1000W Platinum
+- psu_1200 — БП 1200W Titanium
+- psu_1600 — БП 1600W (майнинг)
+### Корпуса (13)
+- case_at_tower — AT Full Tower (2000)
+- case_atx_midi — ATX Midi Tower
+- case_cheap — Корпус NoName
+- case_mid_05 — Mid Tower (2005)
+- case_lian_li — Lian Li PC60
+- case_mid_atx — Mid ATX Tower
+- case_antec — Antec Three Hundred
+- case_corsair_200r — Corsair 200R
+- case_nzxt_s340 — NZXT S340
+- case_fractal — Fractal Design Define
+- case_rgb_16 — Phanteks RGB Tower
+- case_glass — Corsair iCUE 4000X
+- case_full_rgb — Full Tower RGB (2022)
+### Охлаждение (11)
+- cool_box_old — Стоковый кулер (2000-е)
+- cool_zalman_flower — Zalman CNPS7000 (цветок)
+- cool_scythe_mine — Scythe Mine (башня)
+- cool_noctua_u9 — Noctua NH-U9
+- cool_noctua_d14 — Noctua NH-D14
+- cool_bequiet — be quiet! Dark Rock
+- cool_corsair_h60 — Corsair H60 AIO 120мм
+- cool_corsair_h100 — Corsair H100 AIO 240мм
+- cool_nzxt_kraken — NZXT Kraken X63 240мм
+- cool_aio_360 — AIO 360мм RGB
+- cool_custom_loop — Кастом контур (СВО)
+### Периферия (37)
+- mon_crt15 — ЭЛТ монитор 15"
+- mon_crt17 — ЭЛТ монитор 17"
+- mon_crt19 — ЭЛТ монитор 19" (Trinitron)
+- mon_lcd15 — LCD 15" (первые)
+- mon_lcd17 — LCD 17"
+- mon_lcd19_sq — LCD 19" (4:3)
+- mon_lcd22 — LCD 22" Wide
+- mon_24_fhd — Monitor 24" FHD
+- mon_27_2k — Monitor 27" 2K IPS
+- mon_27_144 — Monitor 27" 144Hz IPS
+- mon_32_4k — Monitor 32" 4K
+- mon_ultra — Ultrawide 34" 144Hz
+- kb_ps2 — Клава PS/2 офисная
+- kb_usb_basic — Клава USB простая
+- kb_mech_blues — Механика Cherry Blue
+- kb_mech_rgb — Механика RGB (Razer)
+- kb_tkl — TKL механика
+- kb_60pct — 60% compact механика
+- ms_ball — Мышь шариковая PS/2
+- ms_optical_00 — Мышь оптическая IntelliMouse
+- ms_logitech_g3 — Logitech G3 лазерная
+- ms_mx518 — Logitech MX518
+- ms_deathadder — Razer DeathAdder
+- ms_g502 — Logitech G502 Hero
+- ms_wireless — Logitech G Pro Wireless
+- printer_dot — Матричный принтер
+- printer_ink — Струйный принтер
+- printer_laser — Лазерный принтер HP
+- net_modem — Модем 56k
+- net_adsl — ADSL роутер
+- net_wifi_router — Wi-Fi роутер 802.11g
+- net_wifi_n — Wi-Fi роутер 802.11n
+- net_wifi_ac — Wi-Fi роутер AC1200
+- net_wifi_ax — Wi-Fi 6 роутер AX3000
+- net_switch — Управляемый свитч 24p
+- net_nic_1g — Сетевая карта 1Gb
+- net_nic_10g — Сетевая карта 10Gb
+### Расходники и ПО (14)
+- therm_mx4 — Термопаста MX-4
+- therm_liquid — Жидкий металл Thermal Grizzly
+- sata_c — SATA кабель
+- sata3_c — SATA 6Gb/s кабель
+- win_vista_dvd — Windows Vista (DVD)
+- win7_usb — Windows 7 (USB)
+- win8_usb — Windows 8.1 (USB)
+- win10_key — Ключ Windows 10
+- win11_key — Ключ Windows 11
+- av_eset — ESET NOD32
+- linux_usb — Ubuntu Linux (флешка)
+- usb_stick_1g — USB флешка 1GB
+- usb_stick_8g — USB флешка 8GB
+- usb_stick_64g — USB флешка 64GB
+### Инструменты (11)
+- tool_multi_pro — Мультиметр Fluke 87V
+- tool_solder_sta — Паяльная станция Hakko
+- tool_hot_air — Паяльный фен (BGA)
+- tool_microscope — USB-микроскоп 50x
+- tool_osc_digital — Осциллограф цифровой
+- tool_usb_flash — Загрузочная флешка
+- tool_power_test — Тестер БП ATX
+- tool_post_card — POST диагностическая карта
+- tool_cable_test — Тестер кабелей RJ45
+- tool_rack_mount — 19" монтажная стойка
+- tool_label — Принтер этикеток
+
+Уже имеют индивидуальное изображение (21):
+- therm — Термопаста КПТ-8
+- air — Сжатый воздух
+- alco — Изопропиловый спирт
+- ide_c — IDE (40-pin) кабель
+- win98_cd — Windows 98 SE (диск)
+- win2k_cd — Windows 2000 (диск)
+- winxp_cd — Windows XP Home (диск)
+- winxp_pro_cd — Windows XP Pro (диск)
+- av_kasper — Антивирус Kaspersky
+- av_drweb — Dr.Web (отечественный)
+- paste_brush — Кисточка для чистки
+- screen_cloth — Салфетки для экранов
+- tool_screw_basic — Набор отвёрток (простой)
+- tool_screw_set — Набор отвёрток Pro (30 штук)
+- tool_tweezer — Пинцет антистатический
+- tool_anti_mat — Антистатический коврик
+- tool_wrist — Антистатический браслет
+- tool_multimeter — Мультиметр DT-830
+- tool_solder_iron — Паяльник 40W
+- tool_osc_analog — Осциллограф аналог.
+- tool_crimper — Кримпер RJ45/RJ11
+
+## ПРИОРИТЕТ 2. Учебные материалы без индивидуальной обложки (516)
+Сейчас книги, лекции, курсы и форумы используют общую картинку направления; ВУЗы используют один из двух общих вариантов направления.
+### Видео / Безопасность (1)
+- yt_sec2 — YouTube: «Настройка файрвола и защиты ПК»
+### Видео / Данные (1)
+- yt_dat2 — YouTube: «TestDisk и PhotoRec: возвращаем файлы»
+### Видео / Железо (3)
+- yt_overclock — YouTube: «Разгон процессора»
+- yt_hw_build — YouTube: «Собираем ПК с нуля»
+- yt_hw_upgrade — YouTube: «Апгрейд за минимум денег»
+### Видео / Ремонт (3)
+- yt_repair_laptop — YouTube: «Разборка ноутбука»
+- yt_rep2 — YouTube: «Паяем конденсаторы на материнке»
+- yt_rep3 — YouTube: «Разборка и ремонт ноутбука»
+### Видео / Сети (2)
+- yt_network — YouTube: «Сети за 60 минут»
+- yt_net2 — YouTube: «Настройка роутера за 10 минут»
+### Видео / Софт (1)
+- yt_linux — YouTube: «Linux с нуля»
+### ВУЗы / Безопасность (6)
+- v152_university_security_01 — МГТУ им. Н.Э. Баумана — ИУ
+- v152_university_security_02 — МИРЭА — институт комплексной безопасности
+- v152_university_security_03 — МФТИ — ФРТК
+- v152_university_security_04 — СПбГУТ
+- v152_university_security_05 — МГУ им. М.В. Ломоносова — ВМК
+- v152_university_security_06 — СибАДИ (Омск)
+### ВУЗы / Данные (6)
+- v152_university_data_01 — МГУ им. М.В. Ломоносова — ВМК
+- v152_university_data_02 — МФТИ — ФУПМ
+- v152_university_data_03 — СПбГУ — математико-механический факультет
+- v152_university_data_04 — МГТУ им. Н.Э. Баумана
+- v152_university_data_05 — ИТМО — ФИТиП
+- v152_university_data_06 — НГУ — факультет информационных технологий
+### ВУЗы / Железо (6)
+- v152_university_hardware_01 — МГТУ им. Н.Э. Баумана — ИУ
+- v152_university_hardware_02 — МФТИ — ФРТК
+- v152_university_hardware_03 — НИУ МИЭТ
+- v152_university_hardware_04 — СПбГУ — математико-механический факультет
+- v152_university_hardware_05 — МИРЭА — факультет кибернетики
+- v152_university_hardware_06 — НГУ — факультет информационных технологий
+### ВУЗы / Общение (6)
+- v152_university_communication_01 — МГУ им. М.В. Ломоносова — факультет журналистики
+- v152_university_communication_02 — СПбГУ — факультет журналистики и ВШМ
+- v152_university_communication_03 — НИУ ВШЭ — коммуникации, медиа и дизайн
+- v152_university_communication_04 — РУДН — гуманитарные и социальные науки
+- v152_university_communication_05 — СПбГИКиТ
+- v152_university_communication_06 — ИвГУ — журналистика, реклама и PR
+### ВУЗы / Ремонт (6)
+- v152_university_repair_01 — МГТУ им. Н.Э. Баумана — радиотехнический факультет
+- v152_university_repair_02 — МИРЭА — институт кибернетики
+- v152_university_repair_03 — СПбГУТ
+- v152_university_repair_04 — НИУ МИЭТ
+- v152_university_repair_05 — МАИ — институт информатики и кибернетики
+- v152_university_repair_06 — МГТУ им. Г.И. Носова
+### ВУЗы / Сети (6)
+- v152_university_networking_01 — МТУСИ
+- v152_university_networking_02 — СПбГУТ им. проф. М.А. Бонч-Бруевича
+- v152_university_networking_03 — МГТУ им. Н.Э. Баумана — ИУ
+- v152_university_networking_04 — ПГУТИ (Самара)
+- v152_university_networking_05 — СибГУТИ (Новосибирск)
+- v152_university_networking_06 — МФТИ — ФРТК
+### ВУЗы / Софт (6)
+- v152_university_software_01 — МГУ им. М.В. Ломоносова — ВМК
+- v152_university_software_02 — МФТИ — ФУПМ
+- v152_university_software_03 — СПбГУ — математико-механический факультет
+- v152_university_software_04 — МГТУ им. Н.Э. Баумана
+- v152_university_software_05 — НГУ — факультет информационных технологий
+- v152_university_software_06 — ИТМО — ФИТиП
+### ВУЗы / Управление (6)
+- v152_university_management_01 — ГУУ
+- v152_university_management_02 — МГУ им. М.В. Ломоносова — экономический факультет
+- v152_university_management_03 — СПбГУ — экономический факультет и ВШМ
+- v152_university_management_04 — НИУ ВШЭ — факультет менеджмента
+- v152_university_management_05 — РАНХиГС
+- v152_university_management_06 — МГТУ им. Н.Э. Баумана — ИБМ
+### Книги / Безопасность (30)
+- v151_book_security_01 — «Компьютерное зловредство» — Евгений Касперский
+- v151_book_security_02 — «Компьютерные вирусы: что это такое и как с ними бороться» — Е. В. Касперский
+- v151_book_security_03 — «Компьютерные вирусы и антивирусы: взгляд программиста» — К. Е. Климентьев
+- v151_book_security_04 — «Антивирус Касперского для Linux: руководство пользователя» — Лаборатория Касперского
+- v151_book_security_05 — «Компьютерные вирусы: происхождение, реальная угроза и методы защиты» — Е. Касперский, Д. Зенкин
+- v151_book_security_06 — «Virus Proof: The Ultimate Guide to Protecting Your PC» — Phil Schmauder
+- v151_book_security_07 — «E-mail Virus Protection Handbook» — Syngress
+- v151_book_security_08 — «Защита от компьютерных вирусов и вопросы информационной безопасности» — А. П. Микляев
+- v151_book_security_09 — «Защита компьютерной информации» — Б. Ю. Анин
+- v151_book_security_10 — «Информационная безопасность компьютерных систем и сетей» — В. Ф. Шаньгин
+- v151_book_security_11 — «Защита компьютерной информации. Эффективные методы и средства» — В. Шаньгин
+- v151_book_security_12 — «Энциклопедия компьютерных вирусов»
+- v151_book_security_13 — «Защита информации и информационная безопасность» — В. Г. Спицын, Н. А. Столярова
+- v151_book_security_14 — «Атака через Internet» — И. Д. Медведовский
+- v151_book_security_15 — «Атака из Internet» — И. Д. Медведовский
+- v151_book_security_16 — «Хакинг без секретов» — Б. К. Леонтьев
+- v151_book_security_17 — «Хакинг и фрикинг: методы, атаки, секреты, взлом и защита» — М. Левин
+- v151_book_security_18 — «Защита от компьютерного терроризма» — А. В. Соколов, О. М. Степанюк
+- v151_book_security_19 — «Компьютерный террор: методы взлома информационных систем и компьютерных сетей» — Б. К. Леонтьев
+- v151_book_security_20 — «Защита от хакеров»
+- v151_book_security_21 — «Персональная защита от хакеров. Руководство для начинающих» — Д. Л. Форд
+- v151_book_security_22 — «Компьютерная безопасность. Криптографические методы защиты» — А. А. Петров
+- v151_book_security_23 — «Введение в криптографию» — В. В. Ященко
+- v151_book_security_24 — «Криптография» — А. А. Молдовян, Н. А. Молдовян, Б. Я. Советов
+- v151_book_security_25 — «Безопасность сетей — готовые решения» — С. Мак-Клар, Д. Курц
+- v151_book_security_26 — «Безопасность в сетях Internet и Intranet: руководство пользователя» — Максим Левин
+- v151_book_security_27 — «Интрасети: доступ в Internet, защита» — Н. Г. Милославская, А. И. Толстой
+- v151_book_security_28 — «Безопасность в сети Интернет» — Виталий Леонтьев
+- v151_book_security_29 — «Как защитить компьютер: вирусы, хакеры, реклама» — В. П. Леонтьев
+- v151_book_security_30 — «Теоретические основы компьютерной безопасности» — П. Н. Девянин, О. О. Михальский, Д. И. Правиков, А. Ю. Щербаков
+### Книги / Данные (30)
+- v151_book_data_01 — «Введение в системы баз данных» — К. Дж. Дейт
+- v151_book_data_02 — «Системы баз данных. Полный курс» — Г. Гарсиа-Молина, Дж. Ульман, Дж. Уидом
+- v151_book_data_03 — «Основы современных баз данных» — К. Дж. Дейт
+- v151_book_data_04 — «SQL. Справочник» — К. Клайн
+- v151_book_data_05 — «SQL за 10 минут» — Бен Форта
+- v151_book_data_06 — «SQL. Руководство по изучению языка» — Борис Коган
+- v151_book_data_07 — «Oracle 8i. Энциклопедия пользователя»
+- v151_book_data_08 — «Oracle. Полное руководство»
+- v151_book_data_09 — «Microsoft SQL Server 2000. Энциклопедия»
+- v151_book_data_10 — «Microsoft SQL Server 2000. Справочник администратора»
+- v151_book_data_11 — «SQL Server 2000. Программирование»
+- v151_book_data_12 — «Access 2000. Проектирование баз данных» — П. Ю. Дубнов
+- v151_book_data_13 — «MS Access 2000 за 30 занятий» — Ю. Б. Бекаревич, Н. В. Пушкина
+- v151_book_data_14 — «Access 2000. Руководство пользователя с примерами» — С. А. Каратыгин
+- v151_book_data_15 — «MySQL» — Пол Дюбуа
+- v151_book_data_16 — «MySQL. Справочник по языку» — Пол Дюбуа
+- v151_book_data_17 — «PostgreSQL. Руководство разработчика»
+- v151_book_data_18 — «InterBase и Firebird. Практическое руководство»
+- v151_book_data_19 — «Delphi и базы данных»
+- v151_book_data_20 — «Проектирование реляционных баз данных»
+- v151_book_data_21 — «Нормализация баз данных»
+- v151_book_data_22 — «Хранилища данных» — Уильям Инмон
+- v151_book_data_23 — «Построение хранилищ данных» — Ральф Кимбалл
+- v151_book_data_24 — «OLAP и многомерные базы данных»
+- v151_book_data_25 — «Резервное копирование и восстановление данных»
+- v151_book_data_26 — «RAID: массивы и восстановление»
+- v151_book_data_27 — «Дисковая подсистема ПК» — М. Гук
+- v151_book_data_28 — «Восстановление данных с жёстких дисков»
+- v151_book_data_29 — «Защита и архивирование корпоративных данных»
+- v151_book_data_30 — «Практика резервного копирования: носители, архивы и контроль»
+### Книги / Железо (30)
+- v151_book_hardware_01 — «Модернизация и ремонт ПК» — Скотт Мюллер
+- v151_book_hardware_02 — «Железо IBM» — А. Жаров
+- v151_book_hardware_03 — «Железо ПК» — В. Мураховский, Г. Евсеев
+- v151_book_hardware_04 — «Железо ПК» — В. Соломенчук
+- v151_book_hardware_05 — «Аппаратные средства PC. Наиболее полное руководство» — О. Колесниченко, И. Шишигин
+- v151_book_hardware_06 — «Архитектура ПК, комплектующие, мультимедиа» — Е. Рудометов, В. Рудометов
+- v151_book_hardware_07 — «Форсирование аппаратных средств PC» — В. Рудометов, Е. Рудометов
+- v151_book_hardware_08 — «Компьютерное железо: архитектура, устройство и конфигурирование» — В. В. Старков
+- v151_book_hardware_09 — «Современный компьютер: устройство, выбор, модернизация» — С. Вильховченко
+- v151_book_hardware_10 — «Азбука персонального компьютера» — В. В. Старков
+- v151_book_hardware_11 — «Настольная книга пользователя IBM PC» — А. П. Микляев
+- v151_book_hardware_12 — «Компьютерное железо. Руководство пользователя» — И. Фролов
+- v151_book_hardware_13 — «Компьютерное железо» — С. И. Ветров
+- v151_book_hardware_14 — «Компьютерное железо: справочное пособие» — А. В. Велихов
+- v151_book_hardware_15 — «Персональный компьютер. Модернизация и ремонт» — А. Пилгрим
+- v151_book_hardware_16 — «Освой самостоятельно модернизацию и ремонт ПК за 24 часа» — Г. А. Граймз
+- v151_book_hardware_17 — «Модернизация и ремонт ПК для чайников» — Э. Ратбон
+- v151_book_hardware_18 — «Ремонт и модернизация ПК. Библия пользователя»
+- v151_book_hardware_19 — «Архитектура компьютера» — Э. Таненбаум
+- v151_book_hardware_20 — «Организация ЭВМ» — К. Хамахер
+- v151_book_hardware_21 — «Иллюстрированная энциклопедия компьютерного железа» — П. Ломакин, Д. Шрейн
+- v151_book_hardware_22 — «Процессоры Pentium III, Athlon и другие» — М. Гук, В. Юров
+- v151_book_hardware_23 — «Устройство мультимедийного компьютера» — Е. Рудометов, В. Рудометов
+- v151_book_hardware_24 — «Железо ПК. Энциклопедия» — Роберт Брюс Томпсон, Барбара Фричман Томпсон
+- v151_book_hardware_25 — «Новейшая энциклопедия персонального компьютера» — В. Леонтьев
+- v151_book_hardware_26 — «Сборка, диагностика, оптимизация и апгрейд современного компьютера»
+- v151_book_hardware_27 — «Аппаратные средства IBM PC. Энциклопедия» — М. Гук
+- v151_book_hardware_28 — «Дисковая подсистема ПК» — М. Гук
+- v151_book_hardware_29 — «Процессоры семейства Intel P6» — И. И. Шагурин
+- v151_book_hardware_30 — «Микропроцессоры от 8086 до Pentium III Xeon и AMD-K6-3» — А. А. Ровдо
+### Книги / Общение (30)
+- v151_book_communication_01 — «Как завоевывать друзей и оказывать влияние на людей» — Дейл Карнеги
+- v151_book_communication_02 — «Как перестать беспокоиться и начать жить» — Дейл Карнеги
+- v151_book_communication_03 — «Психология общения. Тайны эффективного взаимодействия» — Р. Вердербер, К. Вердербер
+- v151_book_communication_04 — «Психология общения» — Е. И. Рогов
+- v151_book_communication_05 — «Психология общения» — М. И. Станкин
+- v151_book_communication_06 — «Психология межличностных коммуникаций» — П. Вацлавик, Дж. Бивин, Д. Джексон
+- v151_book_communication_07 — «Лабиринты общения, или Как научиться ладить с людьми» — А. П. Егидес
+- v151_book_communication_08 — «Разговаривать с кем угодно. Как?» — М. Шепард
+- v151_book_communication_09 — «Как говорить с кем угодно и о чем угодно» — Л. Лаундес
+- v151_book_communication_10 — «Искусство общения» — С. Мараваль-Ютен
+- v151_book_communication_11 — «Эпик-общение» — О. Хауэр
+- v151_book_communication_12 — «Говорить легко! Как стать приятным собеседником»
+- v151_book_communication_13 — «Как разговорить собеседника, или Ремесло общения» — А. Максимов
+- v151_book_communication_14 — «Наука общения. Как читать эмоции»
+- v151_book_communication_15 — «Игры, в которые играют люди. Люди, которые играют в игры» — Э. Берн
+- v151_book_communication_16 — «Язык разговора: как разговаривать, чтобы договориться»
+- v151_book_communication_17 — «Гений общения» — Д. В. Аксенов
+- v151_book_communication_18 — «Говори и властвуй» — Д. В. Аксенов
+- v151_book_communication_19 — «Курс русской риторики» — А. А. Волков
+- v151_book_communication_20 — «Культура речи» — Л. А. Введенская
+- v151_book_communication_21 — «Техника речи» — Никольская
+- v151_book_communication_22 — «Культура делового общения» — Ф. А. Кузин
+- v151_book_communication_23 — «Деловая риторика» — Л. А. Введенская, Л. Г. Павлова
+- v151_book_communication_24 — «Язык взаимоотношений мужчина — женщина» — А. и Б. Пиз
+- v151_book_communication_25 — «Поединок с манипулятором. Защита от чужого влияния» — А. Азарнова
+- v151_book_communication_26 — «Психология делового общения» — И. И. Аминов
+- v151_book_communication_27 — «Как читать язык тела и жестов» — П. Андерсен
+- v151_book_communication_28 — «Психология и этика делового общения» — Г. В. Бороздина
+- v151_book_communication_29 — «Внеречевое общение в жизни и искусстве: Азбука молчания»
+- v151_book_communication_30 — «Деловая переписка, презентации и прочие тонкости русского языка» — К. Вострухина
+### Книги / Ремонт (30)
+- v151_book_repair_01 — «Модернизация и ремонт ПК» — Скотт Мюллер
+- v151_book_repair_02 — «Персональный компьютер. Модернизация и ремонт» — А. Пилгрим
+- v151_book_repair_03 — «Освой самостоятельно модернизацию и ремонт ПК за 24 часа» — Г. А. Граймз
+- v151_book_repair_04 — «Ремонт и модернизация ПК. Библия пользователя» — Б. Пресс
+- v151_book_repair_05 — «Ремонт персонального компьютера»
+- v151_book_repair_06 — «Устранение неисправностей в ПК для чайников» — Д. Гукин
+- v151_book_repair_07 — «Сборка и ремонт ПК своими руками. Начали!» — Артур Газаров
+- v151_book_repair_08 — «Видеосамоучитель апгрейда, ремонта и обслуживания компьютера» — Александр Ватаманюк
+- v151_book_repair_09 — «Модернизация и ремонт ноутбуков» — Скотт Мюллер
+- v151_book_repair_10 — «Модернизация и ремонт ноутбуков» — К. Сандлер
+- v151_book_repair_11 — «Модернизация и ремонт ноутбуков для чайников» — Кори Сандлер
+- v151_book_repair_12 — «Ремонт мониторов» — М. А. Воронов, А. В. Родин, Н. А. Тюнин
+- v151_book_repair_13 — «Мониторы» — А. П. Шабалин, В. Л. Полешенко
+- v151_book_repair_14 — «Ремонт зарубежных мониторов» — Донченко
+- v151_book_repair_15 — «Ремонт импортных телевизоров» — А. В. Родин, Н. А. Тюнин
+- v151_book_repair_16 — «Устройство и ремонт цветных телевизоров» — С. А. Ельяшкевич, А. Е. Пескин
+- v151_book_repair_17 — «Цветные стационарные телевизоры и их ремонт» — С. А. Ельяшкевич
+- v151_book_repair_18 — «Ремонт телевизоров TVT. Устройство, регулировка, ремонт»
+- v151_book_repair_19 — «Ремонт бытовой техники» — приложение к журналу «Ремонт & Сервис»
+- v151_book_repair_20 — «Ремонт и обслуживание бытовых машин и приборов» — С. Петросов, С. Алехин
+- v151_book_repair_21 — «Бытовые электроприборы. Устройство и ремонт» — Лепаев
+- v151_book_repair_22 — «Ремонт мелкой бытовой техники» — Дмитрий Алексеев
+- v151_book_repair_23 — «Ремонт крупной бытовой техники. Просто о сложном» — Дмитрий Алексеев
+- v151_book_repair_24 — «Ремонт электронной техники» — журнал
+- v151_book_repair_25 — «Поиск неисправностей и ремонт электронной аппаратуры без схем» — Г. Л. Дэфидсон
+- v151_book_repair_26 — «Ремонт измерительных приборов» — Б. П. Хабаров
+- v151_book_repair_27 — «Домашняя электрика»
+- v151_book_repair_28 — «Энциклопедия ремонта» — серия книг
+- v151_book_repair_29 — «Ремонт» — серия книг, приложение к журналу «Ремонт & Сервис»
+- v151_book_repair_30 — «2000 советов для умелых и неумелых рук» — А. Д. Байков
+### Книги / Сети (30)
+- v151_book_networking_01 — «Компьютерные сети. Принципы, технологии, протоколы» — В. Г. Олифер, Н. А. Олифер
+- v151_book_networking_02 — «Компьютерные сети» — Э. Таненбаум
+- v151_book_networking_03 — «Энциклопедия. Технологии корпоративных сетей» — Максим Кульгин
+- v151_book_networking_04 — «Вычислительные сети: понятия, архитектура, протоколы, технологии и средства телекоммуникаций» — В. П. Бей, Б. Н. Виноградов и др.
+- v151_book_networking_05 — «Data & Computer Communications» — Уильям Столлингс
+- v151_book_networking_06 — «Новые технологии и оборудование IP-сетей» — В. Г. Олифер, Н. А. Олифер
+- v151_book_networking_07 — «TCP/IP: Архитектура, протоколы, реализации» — Сидни Фейт
+- v151_book_networking_08 — «Практика построения компьютерных сетей. Для профессионалов» — Максим Кульгин
+- v151_book_networking_09 — «Телекоммуникационные технологии и сети» — И. П. Норенков, В. А. Трудоношин
+- v151_book_networking_10 — «Информационные процессы в компьютерных сетях: протоколы, стандарты, интерфейсы, модели» — Д. А. Мельников
+- v151_book_networking_11 — «Communication Networks» — Леон-Гарсия и Виджаджа
+- v151_book_networking_12 — «Computer Networks: A Systems Approach» — Ларри Петерсон и Брюс Дэви
+- v151_book_networking_13 — «Сетевые технологии Windows 2000» — Алексей Вишневский
+- v151_book_networking_14 — «Сети TCP/IP. Ресурсы Microsoft Windows 2000 Server»
+- v151_book_networking_15 — «Microsoft Windows 2000 TCP/IP. Протоколы и службы» — Т. Ли, Д. Дэвис
+- v151_book_networking_16 — «Компьютерные сети: учебный курс. MCSE 70-058»
+- v151_book_networking_17 — «Разработка инфраструктуры сетевых служб Microsoft Windows 2000. Учебный курс MCSE»
+- v151_book_networking_18 — «Администрирование сети на основе Microsoft Windows 2000. Учебный курс MCSE»
+- v151_book_networking_19 — «Компьютерные сети. Устройство, подключение и использование» — Левин
+- v151_book_networking_20 — «Сети и межсетевые коммуникации. Windows 2000» — Гусева
+- v151_book_networking_21 — «Атака через Internet» — И. Д. Медведовский
+- v151_book_networking_22 — «Атака из Internet» — И. Д. Медведовский
+- v151_book_networking_23 — «Защита информации в компьютерных системах и сетях» — Ю. В. Романец
+- v151_book_networking_24 — «Cisco Internetworking Technology Overview»
+- v151_book_networking_25 — «Руководство по технологиям объединенных сетей» — Cisco Systems
+- v151_book_networking_26 — «Маршрутизаторы Cisco для IP-сетей» — И. Руденко
+- v151_book_networking_27 — «Маршрутизаторы Cisco. Практическое применение» — Джо Хабракен
+- v151_book_networking_28 — «Компьютерные сети в Интернет. Учебно-методическое пособие» — А. А. Бобцов, А. В. Лямин, М. С. Чежин
+- v151_book_networking_29 — «Секреты интернета» — А. Кон
+- v151_book_networking_30 — «Быстро и легко осваиваем работу в сети Интернет» — под ред. Ф. А. Резникова
+### Книги / Софт (30)
+- v151_book_software_01 — «IBM PC для пользователя» — Виктор Фигурнов
+- v151_book_software_02 — «Самоучитель работы на компьютере. Начинаем с Windows» — А. Левин
+- v151_book_software_03 — «Microsoft Windows 2000. Планирование, развертывание, установка» — Ф. Зубанов
+- v151_book_software_04 — «Windows 2000 Professional. Русская версия» — А. Г. Андреев
+- v151_book_software_05 — «Самоучитель Windows 2000 Professional» — Л. Омельченко, А. Федоров
+- v151_book_software_06 — «Переход на Windows 2000 для профессионалов» — Б. Богумирский
+- v151_book_software_07 — «Системное программирование в Windows 2000» — А. Вильямс
+- v151_book_software_08 — «Эффективная работа с Microsoft Office 2000» — М. Хэлворсон, М. Янг
+- v151_book_software_09 — «Microsoft Office 2000. Шаг за шагом. 8 книг в 1»
+- v151_book_software_10 — «Microsoft Office 2000» — Б. Карпов
+- v151_book_software_11 — «Microsoft Office 2000» — Ю. Леонтьев
+- v151_book_software_12 — «Office 2000. 5 книг в 1» — под ред. Э. М. Берлинера
+- v151_book_software_13 — «Искусство программирования» — Д. Э. Кнут
+- v151_book_software_14 — «C++. Начала программирования» — Э. А. Ишкова
+- v151_book_software_15 — «Microsoft Visual C++ в задачах и примерах» — Н. Культин
+- v151_book_software_16 — «Программирование в Delphi 5» — А. Я. Архангельский
+- v151_book_software_17 — «Delphi 5» — В. Э. Гофман, А. Д. Хомоненко
+- v151_book_software_18 — «Программирование в Turbo Pascal 7.0 и Delphi» — Н. Б. Культин
+- v151_book_software_19 — «Visual Basic for Applications в Office 2000» — А. Андреев
+- v151_book_software_20 — «Самоучитель HTML» — А. Гончаров
+- v151_book_software_21 — «Настольная книга Web-мастера» — С. Н. Коржинский
+- v151_book_software_22 — «Быстро и легко осваиваем работу в сети Интернет» — под ред. Ф. А. Резникова
+- v151_book_software_23 — «Adobe Photoshop 5.0» — С. И. Пономаренко
+- v151_book_software_24 — «Эффективная работа с Photoshop 5.5» — А. Тайц, А. Тайц
+- v151_book_software_25 — «Photoshop 5.5 для пользователя» — М. Бурлаков
+- v151_book_software_26 — «Access 2000. Проектирование баз данных» — П. Ю. Дубнов
+- v151_book_software_27 — «MS Access 2000 за 30 занятий» — Ю. Б. Бекаревич, Н. В. Пушкина
+- v151_book_software_28 — «Access 2000. Руководство пользователя с примерами» — С. А. Каратыгин
+- v151_book_software_29 — «Сетевые технологии Windows 2000» — А. Вишневский
+- v151_book_software_30 — «Атака через Internet» — И. Д. Медведовский
+### Книги / Управление (30)
+- v151_book_management_01 — «Управление персоналом современной организации» — С. В. Шекшня
+- v151_book_management_02 — «Управление персоналом» — В. М. Цветаев
+- v151_book_management_03 — «Управление персоналом» — И. А. Скопылатов, О. Ю. Ефремов
+- v151_book_management_04 — «Управление персоналом» — И. К. Макарова
+- v151_book_management_05 — «Управление персоналом» — Ю. А. Цыпкин
+- v151_book_management_06 — «Основы управленческой деятельности» — В. Г. Шипунов
+- v151_book_management_07 — «Менеджмент персонала предприятия» — В. В. Травин, В. А. Дятлов
+- v151_book_management_08 — «Управление персоналом организации» — под ред. А. Я. Кибанова
+- v151_book_management_09 — «Управление персоналом» — Е. А. Татарников
+- v151_book_management_10 — «Организационное поведение и управление персоналом» — В. А. Спивак
+- v151_book_management_11 — «Управление человеческими ресурсами» — Г. Х. Бакирова
+- v151_book_management_12 — «Управление персоналом: исследование, оценка, обучение» — Е. Б. Моргунов
+- v151_book_management_13 — «Технология управления персоналом: настольная книга менеджера»
+- v151_book_management_14 — «Управление персоналом» — В. К. Потемкин
+- v151_book_management_15 — «Управление персоналом для умных» — Я. Дубейковская
+- v151_book_management_16 — «Управление персоналом в организации. Кадровая политика. Мотивация. Структура» — Г. Зайцев
+- v151_book_management_17 — «Развивающее управление персоналом» — В. А. Спивак
+- v151_book_management_18 — «Управление человеческими ресурсами: пять уроков эффективного HR-менеджмента» — И. К. Макарова
+- v151_book_management_19 — «Управление персоналом: руководитель и HR-специалист» — Е. А. Закаблуцкая
+- v151_book_management_20 — «Управление персоналом: учебное пособие для вузов» — И. А. Скопылатов, О. Ю. Ефремов
+- v151_book_management_21 — «HR-менеджмент: поиск, подбор, тренинг, адаптация, мотивация, дисциплина, этика» — Н. Корнелиус
+- v151_book_management_22 — «Искусство подбора персонала. Как оценить человека за час» — С. Иванова
+- v151_book_management_23 — «Вы — управляющий персоналом» — А. А. Крымов
+- v151_book_management_24 — «Организация HR-событий. Успешная российская практика» — О. Симановская
+- v151_book_management_25 — «Управление персоналом: современная российская практика»
+- v151_book_management_26 — «Основы управления персоналом»
+- v151_book_management_27 — «Управленческие кадры и организационная культура»
+- v151_book_management_28 — «Управление персоналом» — В. Г. Шипунов
+- v151_book_management_29 — «Управление персоналом» — И. А. Скопылатов
+- v151_book_management_30 — «Управление персоналом» — В. М. Цветаев
+### Курсы / Безопасность (6)
+- v152_course_security_01 — Безопасность информационных технологий
+- v152_course_security_02 — Kaspersky Lab Data-Security Professional (KL DSP)
+- v152_course_security_03 — Защита периметра сети
+- v152_course_security_04 — Методы и средства защиты компьютерной информации
+- v152_course_security_05 — Теория и практика применения PKI
+- v152_course_security_06 — Специализированные программно-аппаратные средства защиты
+### Курсы / Данные (6)
+- v152_course_data_01 — Проектирование и реализация баз данных Microsoft SQL Server 2000
+- v152_course_data_02 — Введение в реляционные базы данных
+- v152_course_data_03 — Администрирование баз данных
+- v152_course_data_04 — Разработка приложений для Microsoft SQL Server 2000
+- v152_course_data_05 — Модели данных: от концептуальной до физической
+- v152_course_data_06 — Основы языка SQL
+### Курсы / Железо (6)
+- v152_course_hardware_01 — Архитектура ПК и основы сборки
+- v152_course_hardware_02 — Технологии Intel: от vPro до оптимизации ПО
+- v152_course_hardware_03 — Апгрейд, обслуживание и диагностика компьютера
+- v152_course_hardware_04 — Устройство и ремонт материнских плат и блоков питания
+- v152_course_hardware_05 — Сборка ПК: от выбора компонентов до настройки BIOS
+- v152_course_hardware_06 — Современные процессоры и архитектура ЭВМ
+### Курсы / Общение (6)
+- v152_course_communication_01 — Культура делового общения
+- v152_course_communication_02 — Мастерство ведения переговоров
+- v152_course_communication_03 — Психология эффективного общения
+- v152_course_communication_04 — Русский язык делового общения
+- v152_course_communication_05 — Деловая риторика и техника речи
+- v152_course_communication_06 — Этикет и протокол делового общения
+### Курсы / Ремонт (6)
+- v152_course_repair_01 — Ремонт и обслуживание ПК и оргтехники
+- v152_course_repair_02 — Видеосамоучитель апгрейда, ремонта и обслуживания компьютера
+- v152_course_repair_03 — Ремонт мониторов и периферийных устройств
+- v152_course_repair_04 — Диагностика и ремонт компьютерных плат
+- v152_course_repair_05 — Устранение неисправностей в ПК
+- v152_course_repair_06 — Практическая электроника для ремонтника
+### Курсы / Сети (6)
+- v152_course_networking_01 — Введение в Windows 2000 и сетевые технологии
+- v152_course_networking_02 — Администрирование локальных и объединённых сетей
+- v152_course_networking_03 — Организация работы сетей ЭВМ
+- v152_course_networking_04 — Сетевые ОС: Windows 2000/2003 Server
+- v152_course_networking_05 — Протоколы TCP/IP и основы маршрутизации
+- v152_course_networking_06 — Построение защищённых сетей на базе Windows 2000
+### Курсы / Софт (6)
+- v152_course_software_01 — Программирование на C/C++: от основ до ООП
+- v152_course_software_02 — Delphi 5: визуальное программирование
+- v152_course_software_03 — Turbo Pascal: базовый курс
+- v152_course_software_04 — Java 2: стандартная редакция
+- v152_course_software_05 — Visual Basic 6: разработка приложений для Windows
+- v152_course_software_06 — Microsoft Office 2000: от Word до Access
+### Курсы / Управление (6)
+- v152_course_management_01 — Управление персоналом: стратегия и тактика
+- v152_course_management_02 — Менеджмент: искусство руководства
+- v152_course_management_03 — Организационное поведение и психология коллектива
+- v152_course_management_04 — Эффективный HR-менеджмент
+- v152_course_management_05 — Управление программными проектами
+- v152_course_management_06 — Бизнес-курс MBA: Управление персоналом
+### Лекции / Безопасность (6)
+- v152_lecture_security_01 — МГУ (ВМК) — проф. В.С. Запечников — «Информационная безопасность и криптография»
+- v152_lecture_security_02 — МФТИ (ФУПМ) — проф. А.Г. Рощин — «Криптографические протоколы и шифры»
+- v152_lecture_security_03 — МГТУ им. Баумана (ИУ) — проф. В.А. Галатенко — «Защита компьютерных систем от вторжений»
+- v152_lecture_security_04 — СПбГУ (ПМ-ПУ) — проф. А.В. Григорьев — «Антивирусная защита и вредоносный код»
+- v152_lecture_security_05 — ИТМО (КТУ) — проф. Е.А. Фёдорова — «Сетевые атаки и средства обнаружения»
+- v152_lecture_security_06 — МИФИ (Кибернетика) — проф. В.И. Рогов — «Безопасность операционных систем и приложений»
+### Лекции / Данные (6)
+- v152_lecture_data_01 — МГУ (ВМК) — проф. Б.Я. Советов — «Базы данных и СУБД»
+- v152_lecture_data_02 — МФТИ (ФУПМ) — проф. А.А. Калинин — «Проектирование реляционных баз данных»
+- v152_lecture_data_03 — МГТУ им. Баумана (ИУ) — проф. С.А. Орлов — «Модели данных и нормализация»
+- v152_lecture_data_04 — СПбГУ (ПМ-ПУ) — проф. Н.А. Смирнова — «Язык SQL и оптимизация запросов»
+- v152_lecture_data_05 — ИТМО (КТУ) — проф. П.В. Гусев — «Хранилища данных и OLAP»
+- v152_lecture_data_06 — МИФИ (Кибернетика) — проф. В.А. Серебряков — «Распределённые базы данных и транзакции»
+### Лекции / Железо (6)
+- v152_lecture_hardware_01 — МГУ (ВМК) — проф. В.В. Воеводин — «Архитектура вычислительных систем»
+- v152_lecture_hardware_02 — МФТИ (ФРТК) — проф. А.С. Холодов — «Организация ЭВМ и суперкомпьютеры»
+- v152_lecture_hardware_03 — МГТУ им. Баумана (ИУ) — проф. Ю.А. Романов — «Микропроцессорные системы и шины»
+- v152_lecture_hardware_04 — СПбГУ (ПМ-ПУ) — проф. А.Н. Терехов — «Процессоры, память и кэш-архитектуры»
+- v152_lecture_hardware_05 — ИТМО (КТУ) — проф. В.В. Шилов — «Компьютерная архитектура и периферия»
+- v152_lecture_hardware_06 — МИФИ (Кибернетика) — проф. В.П. Иванников — «Элементная база и диагностика ЭВМ»
+### Лекции / Общение (6)
+- v152_lecture_communication_01 — МГУ (Ф-т психологии) — проф. Ю.Н. Емельянов — «Психология межличностного общения»
+- v152_lecture_communication_02 — СПбГУ (Ф-т психологии) — проф. А.А. Реан — «Деловое общение и управление конфликтами»
+- v152_lecture_communication_03 — МГУ (Ф-т журналистики) — проф. И.А. Стернин — «Риторика и культура деловой речи»
+- v152_lecture_communication_04 — МФТИ (Гуманитарная кафедра) — доц. Е.В. Кудрявцева — «Техника публичных выступлений и презентаций»
+- v152_lecture_communication_05 — МГТУ им. Баумана (Инженерная педагогика) — проф. Л.И. Панченко — «Этика и психология профессионального общения»
+- v152_lecture_communication_06 — ИТМО (Гуманитарный факультет) — проф. О.А. Михайлова — «Коммуникации в IT-среде и работа с клиентами»
+### Лекции / Ремонт (6)
+- v152_lecture_repair_01 — МГТУ им. Баумана (РЛ) — проф. В.М. Козлов — «Диагностика и ремонт электронных устройств»
+- v152_lecture_repair_02 — МИФИ (Электроника) — проф. В.А. Никитин — «Ремонт и обслуживание радиоэлектронной аппаратуры»
+- v152_lecture_repair_03 — СПбГУ (Физфак) — проф. И.А. Гарбузов — «Практическая электроника и схемотехника»
+- v152_lecture_repair_04 — ИТМО (ФОП) — проф. Д.А. Горшков — «Пайка, монтаж и замена компонентов»
+- v152_lecture_repair_05 — МФТИ (ФРТК) — проф. Ю.В. Гуляев — «Методы поиска неисправностей на плате»
+- v152_lecture_repair_06 — МГУ (Физфак) — проф. В.В. Мигулин — «Физические основы ремонта компьютеров и периферии»
+### Лекции / Сети (6)
+- v152_lecture_networking_01 — МГУ (ВМК) — проф. В.И. Дорогов — «Сетевые технологии и протоколы»
+- v152_lecture_networking_02 — МФТИ (ФРТК) — проф. А.В. Красильников — «Телекоммуникационные системы и передачи данных»
+- v152_lecture_networking_03 — МГТУ им. Баумана (ИУ) — проф. А.Б. Хрусталёв — «Компьютерные сети и Интернет»
+- v152_lecture_networking_04 — СПбГУ (ПМ-ПУ) — проф. Г.А. Жуков — «Протоколы TCP/IP и маршрутизация»
+- v152_lecture_networking_05 — ИТМО (КТУ) — проф. С.В. Баранов — «Беспроводные сети и мобильная связь»
+- v152_lecture_networking_06 — МИФИ (Кибернетика) — проф. О.В. Голубев — «Администрирование сетей и сервисы»
+### Лекции / Софт (6)
+- v152_lecture_software_01 — МГУ (ВМК) — проф. С.С. Гайсарян — «Объектно-ориентированное программирование на C++»
+- v152_lecture_software_02 — МФТИ (ФУПМ) — проф. А.В. Костенко — «Алгоритмы и структуры данных»
+- v152_lecture_software_03 — МГТУ им. Баумана (ИУ) — проф. В.А. Ильин — «Языки программирования: Pascal, C, Delphi»
+- v152_lecture_software_04 — СПбГУ (ПМ-ПУ) — проф. А.П. Столяров — «Современные языки и среды разработки»
+- v152_lecture_software_05 — ИТМО (КТУ) — проф. Н.В. Павлов — «Программная инженерия и жизненный цикл ПО»
+- v152_lecture_software_06 — МИФИ (Кибернетика) — проф. В.Е. Карпов — «Системное программирование и ОС»
+### Лекции / Управление (6)
+- v152_lecture_management_01 — МГУ (Экономический ф-т) — проф. В.А. Гневко — «Основы менеджмента и управленческих решений»
+- v152_lecture_management_02 — РАНХиГС (Ф-т менеджмента) — проф. А.И. Наумов — «Управление персоналом: мотивация и оценка»
+- v152_lecture_management_03 — МГТУ им. Баумана (ИБМ) — проф. В.В. Мирошников — «Управление IT-проектами и ресурсами»
+- v152_lecture_management_04 — СПбГУ (Экономический ф-т) — проф. О.С. Виханский — «Стратегическое управление и планирование»
+- v152_lecture_management_05 — МФТИ (ФУПМ) — проф. А.А. Барский — «Управление инновациями и технологический менеджмент»
+- v152_lecture_management_06 — ИТМО (Ф-т менеджмента) — проф. С.В. Чиркин — «Организационное поведение и лидерство»
+### Реклама / Общение (30)
+- v153_ad_ixbt — iXBT.com
+- v153_ad_overclockers — Overclockers.ru
+- v153_ad_cyberforum — CyberForum.ru
+- v153_ad_sqlru — SQL.ru
+- v153_ad_ruboard — Ru.Board
+- v153_ad_linuxorg — Linux.org.ru
+- v153_ad_3dnews — 3DNews Forum
+- v153_ad_nagru — Nag.ru
+- v153_ad_computerra — Журнал «Компьютерра»
+- v153_ad_upgrade — Журнал «UPgrade»
+- v153_ad_chip — Журнал «Chip Россия»
+- v153_ad_computerpress — Журнал «КомпьютерПресс»
+- v153_ad_mirpk — Журнал «Мир ПК»
+- v153_ad_hardsoft — Журнал «Hard’n’Soft»
+- v153_ad_games — «Страна игр» / «Game.EXE»
+- v153_ad_homepc — Журнал «Домашний компьютер»
+- v153_ad_computer_russia — Газета «Компьютерная Россия»
+- v153_ad_computer_elite — Газета «Компьютерная элита»
+- v153_ad_doskiru — Доски.ру
+- v153_ad_irr — «Из рук в руки»
+- v153_ad_cityboards — Городские доски объявлений
+- v153_ad_yandex_network — Рекламная сеть Яндекса
+- v153_ad_m2k — Media 2000 (M2K)
+- v153_ad_pbs — Power Banner System
+- v153_ad_banner_exchange — Баннерообменные сети
+- v153_ad_yandex — Яндекс
+- v153_ad_rambler — Rambler
+- v153_ad_aport — Апорт
+- v153_ad_listru — List.ru
+- v153_ad_nachalo — Nachalo.ru
+### Техникумы и ПТУ / Безопасность (5)
+- v152_college_security_01 — Техникум программирования и кибербезопасности (МИРЭА, Москва)
+- v152_college_security_02 — ПТУ №25 (Челябинск) — «Информационная безопасность»
+- v152_college_security_03 — Иркутский авиационный техникум — «Информационная безопасность автоматизированных систем»
+- v152_college_security_04 — Томский индустриальный техникум — «Организация и технология защиты информации»
+- v152_college_security_05 — Техникум информационных технологий (Пятигорск) — «Информационная безопасность»
+### Техникумы и ПТУ / Данные (5)
+- v152_college_data_01 — Московский техникум информатики и вычислительной техники (МТИВТ) — «Информационные системы»
+- v152_college_data_02 — Московский приборостроительный техникум — внедрение и сопровождение баз данных
+- v152_college_data_03 — Техникум телекоммуникаций (МТУСИ, Москва)
+- v152_college_data_04 — Санкт-Петербургский техникум библиотечных и информационных технологий
+- v152_college_data_05 — Техникум информационных технологий (Пятигорск)
+### Техникумы и ПТУ / Железо (5)
+- v152_college_hardware_01 — Московский радиотехнический техникум им. А.А. Расплетина
+- v152_college_hardware_02 — Новосибирский радиотехнический техникум (НРТК)
+- v152_college_hardware_03 — Техникум космического приборостроения (Москва)
+- v152_college_hardware_04 — Московский радиомеханический техникум (МРМТ)
+- v152_college_hardware_05 — Свердловский радиотехнический техникум им. А.С. Попова
+### Техникумы и ПТУ / Общение (3)
+- v152_college_communication_01 — Тюменский коммерческий финансовый техникум
+- v152_college_communication_02 — Михайловский экономический техникум-интернат (МЭТИ)
+- v152_college_communication_03 — Московский техникум информатики и вычислительной техники (МТИВТ)
+### Техникумы и ПТУ / Ремонт (5)
+- v152_college_repair_01 — Техникум космического приборостроения (Москва) — эксплуатация и ремонт ЭВМ
+- v152_college_repair_02 — Московский приборостроительный техникум — обслуживание вычислительной техники
+- v152_college_repair_03 — Московский авиационный техникум им. Годовикова — компьютерный профиль
+- v152_college_repair_04 — Новосибирский радиотехнический техникум (НРТК)
+- v152_college_repair_05 — Марийский радиомеханический техникум
+### Техникумы и ПТУ / Сети (5)
+- v152_college_networking_01 — Техникум телекоммуникаций (МТУСИ, Москва)
+- v152_college_networking_02 — Московский техникум информатики и вычислительной техники (МТИВТ)
+- v152_college_networking_03 — Московский приборостроительный техникум — «Сетевое и системное администрирование»
+- v152_college_networking_04 — Томский индустриальный техникум — «Сетевое и системное администрирование»
+- v152_college_networking_05 — Техникум информационных технологий (Пятигорск) — «Компьютерные сети»
+### Техникумы и ПТУ / Софт (5)
+- v152_college_software_01 — Московский техникум информатики и вычислительной техники (МТИВТ)
+- v152_college_software_02 — Техникум программирования и кибербезопасности (МИРЭА, Москва)
+- v152_college_software_03 — Московский приборостроительный техникум
+- v152_college_software_04 — Техникум информационных технологий (Пятигорск)
+- v152_college_software_05 — Иркутский авиационный техникум — «Программирование в компьютерных системах»
+### Техникумы и ПТУ / Управление (3)
+- v152_college_management_01 — Михайловский экономический техникум-интернат (МЭТИ) — выпуск менеджеров
+- v152_college_management_02 — Тюменский коммерческий финансовый техникум
+- v152_college_management_03 — Московский техникум информатики и вычислительной техники (МТИВТ)
+### Форумы / Безопасность (5)
+- v152_forum_security_01 — Dr.Web — официальный форум
+- v152_forum_security_02 — Exploit
+- v152_forum_security_03 — Kaspersky Club
+- v152_forum_security_04 — VirusInfo.info
+- v152_forum_security_05 — Anti-Malware.ru — форум
+### Форумы / Данные (5)
+- v152_forum_data_01 — SQL.ru
+- v152_forum_data_02 — CyberForum.ru — «Базы данных»
+- v152_forum_data_03 — iXBT.com — разделы по БД
+- v152_forum_data_04 — Ru-Board — программирование и БД
+- v152_forum_data_05 — Citforum.ru
+### Форумы / Железо (5)
+- v152_forum_hardware_01 — iXBT.com
+- v152_forum_hardware_02 — Overclockers.ru
+- v152_forum_hardware_03 — Ru-Board — «Компьютеры»
+- v152_forum_hardware_04 — CyberForum.ru — «Железо»
+- v152_forum_hardware_05 — forum.old-dos.ru
+### Форумы / Общение (5)
+- v152_forum_communication_01 — Ru-Board — общение
+- v152_forum_communication_02 — E-xecutive.ru — переговоры
+- v152_forum_communication_03 — CyberForum.ru — «Свободное общение»
+- v152_forum_communication_04 — iXBT.com — Longread
+- v152_forum_communication_05 — Linux.org.ru — Talks
+### Форумы / Ремонт (5)
+- v152_forum_repair_01 — Ru-Board — «Ремонт компьютеров»
+- v152_forum_repair_02 — iXBT.com — ремонт железа
+- v152_forum_repair_03 — Tehnari.ru
+- v152_forum_repair_04 — CyberForum.ru — «Электроника»
+- v152_forum_repair_05 — forum.old-dos.ru — ремонт
+### Форумы / Сети (5)
+- v152_forum_networking_01 — Nag.ru
+- v152_forum_networking_02 — CyberForum.ru — «Сети»
+- v152_forum_networking_03 — Linux.org.ru — «Сети»
+- v152_forum_networking_04 — Ru-Board — «Операционные системы»
+- v152_forum_networking_05 — iXBT.com — разделы по сетям
+### Форумы / Софт (5)
+- v152_forum_software_01 — CyberForum.ru
+- v152_forum_software_02 — RSDN.ru
+- v152_forum_software_03 — Ru-Board — «Программы»
+- v152_forum_software_04 — Linux.org.ru
+- v152_forum_software_05 — iXBT.com — разделы по софту
+### Форумы / Управление (5)
+- v152_forum_management_01 — E-xecutive.ru
+- v152_forum_management_02 — Cfin.ru — форум
+- v152_forum_management_03 — Ru-Board — «Бизнес»
+- v152_forum_management_04 — CyberForum.ru — «Работа»
+- v152_forum_management_05 — iXBT.com — деловые разделы
+### cert / Безопасность (1)
+- cert_sec — CompTIA Security+
+### cert / Данные (1)
+- cert_data_rec — Data Recovery Professional
+### cert / Железо (1)
+- cert_aplus — CompTIA A+
+### cert / Сети (2)
+- cert_net — CompTIA Network+
+- cert_cisco — Cisco CCNA
+### cert / Софт (1)
+- cert_ms — Microsoft MCP
+### cert / Управление (1)
+- cert_pmp — PMP (Project Management Professional)
+### language / Общение (8)
+- lang_english_basic — Английский для начинающих
+- lang_english_tech — Технический английский для компьютерщиков
+- lang_english_full — Английский: путь от A1 до C1
+- lang_german — Немецкий язык
+- lang_french — Французский язык
+- lang_spanish — Испанский язык
+- lang_chinese — Китайский язык
+- lang_japanese — Японский язык
+
+## ПРИОРИТЕТ 3. Достижения: сейчас эмодзи/замок (90)
+- a1 — Первый шаг
+- a2 — Десятка
+- a3 — Полтинник
+- a4 — Сотня
+- a5 — 250 заказов
+- a6 — 500 заказов
+- a7 — Серия 10
+- a8 — Серия 25
+- a9 — Серия 50
+- a10 — Эпик!
+- a11 — 5 эпиков
+- a12 — Мастер провала
+- b1 — 10К
+- b2 — 100К
+- b3 — Миллионер
+- b4 — 10 миллионов
+- b5 — 100 миллионов
+- b6 — Миллиард
+- b7 — Заначка 50К
+- b8 — Заначка 500К
+- b9 — Заначка 5М
+- b10 — Банкир
+- b11 — Должник
+- b12 — Без долгов
+- c1 — Железячник
+- c2 — Железный мастер
+- c3 — Железный бог
+- c4 — Виндузятник
+- c5 — Программатор
+- c6 — Сетевик
+- c7 — Сетевой маг
+- c8 — Паяльщик
+- c9 — Дата-спасатель
+- c10 — Безопасник
+- c11 — Переговорщик
+- c12 — Менеджер
+- c13 — Универсал
+- c14 — Полный комплект
+- d1 — Первый курс
+- d2 — Студент
+- d3 — Учёный
+- d4 — Профессор
+- d5 — Первый сертификат
+- d6 — Ютубер-самоучка
+- d7 — Форумный боец
+- e1 — Гаражник
+- e2 — Свой офис
+- e3 — Технопарк
+- e4 — На колёсах
+- e5 — Газелист
+- e6 — Автопарк
+- e7 — ПК-мастер
+- e8 — Топовая сборка
+- f1 — Первая работа
+- f2 — Сисадмин
+- f3 — Безопасник
+- f4 — Директор
+- f5 — CTO
+- f6 — 10 лет стажа
+- g1 — XP-мастер
+- g2 — Сетевик 2005
+- g3 — Core 2 Duo
+- g4 — Sandy Bridge
+- g5 — Haswell
+- g6 — Ryzen революция
+- g7 — Пандемия
+- g8 — AI-эпоха
+- g9 — Четверть века
+- h1 — Знакомый мастер
+- h2 — Надёжный
+- h3 — Известный мастер
+- h4 — IT-легенда
+- h5 — Реклама работает
+- h6 — Сарафанное радио
+- i1 — Уровень 5
+- i2 — Уровень 10
+- i3 — Уровень 25
+- i4 — Уровень 50
+- i5 — Уровень 75
+- i6 — Уровень 100
+- j1 — Первый мем
+- j2 — Состоятельный
+- j3 — Предприниматель
+- j4 — IT-магнат
+- j5 — Диалап-выживший
+- j6 — Санкции? Параллельный!
+- j7 — Майнер 2017
+- j8 — Безопасность прежде
+- j9 — Ноутбук починен
+- j10 — SSD-евангелист
+
+## ПРИОРИТЕТ 3. Должности карьеры: общая иконка направления (40)
+- v162_hardware_1 — Помощник сборщика ПК
+- v162_hardware_2 — Техник-сборщик
+- v162_hardware_3 — Инженер по аппаратному обеспечению
+- v162_hardware_4 — Руководитель аппаратного отдела
+- v162_hardware_5 — Главный инженер по вычислительной технике
+- v162_software_1 — Оператор ПК / помощник программиста
+- v162_software_2 — Программист-стажёр
+- v162_software_3 — Программист-разработчик
+- v162_software_4 — Ведущий разработчик
+- v162_software_5 — Архитектор программного обеспечения
+- v162_networking_1 — Помощник сетевого техника
+- v162_networking_2 — Сетевой техник
+- v162_networking_3 — Системный администратор
+- v162_networking_4 — Ведущий сетевой инженер
+- v162_networking_5 — Руководитель IT-инфраструктуры
+- v162_repair_1 — Стажёр компьютерной мастерской
+- v162_repair_2 — Мастер сервис-центра
+- v162_repair_3 — Ведущий мастер
+- v162_repair_4 — Руководитель отдела сервиса
+- v162_repair_5 — Директор сервисного центра
+- v162_security_1 — Помощник администратора безопасности
+- v162_security_2 — Техник по защите информации
+- v162_security_3 — Специалист по информационной безопасности
+- v162_security_4 — Руководитель отдела информационной безопасности
+- v162_security_5 — Директор по информационной безопасности
+- v162_data_1 — Оператор базы данных
+- v162_data_2 — Младший администратор БД
+- v162_data_3 — Администратор баз данных
+- v162_data_4 — Ведущий администратор БД
+- v162_data_5 — Руководитель направления данных
+- v162_communication_1 — Оператор технической поддержки
+- v162_communication_2 — Менеджер по работе с клиентами
+- v162_communication_3 — Ведущий аккаунт-менеджер
+- v162_communication_4 — Руководитель клиентского отдела
+- v162_communication_5 — Директор по развитию
+- v162_management_1 — Помощник руководителя IT-проектов
+- v162_management_2 — Координатор проектов
+- v162_management_3 — Менеджер IT-проектов
+- v162_management_4 — Руководитель IT-отдела
+- v162_management_5 — Операционный директор IT-компании
+
+## ПРИОРИТЕТ 3. Шаблоны сотрудников: эмодзи (16)
+- apprentice — Ученик мастера
+- repairer — Мастер по ремонту
+- sysadmin — Системный администратор
+- manager — Менеджер приёмки
+- accountant — Бухгалтер
+- marketer — Специалист по рекламе
+- v161_repair_master — Мастер по ремонту
+- v161_pc_assembler — Сборщик и тестировщик ПК
+- v161_network_engineer — Сетевой инженер
+- v161_web_developer — Веб-разработчик
+- v161_teacher — Преподаватель компьютерных курсов
+- v161_sales_manager — Менеджер по продажам
+- v161_support_engineer — Инженер техподдержки
+- v161_security_engineer — Инженер по безопасности
+- v161_data_engineer — Специалист по восстановлению данных
+- v161_operations_manager — Операционный менеджер
+
+## ПРИОРИТЕТ 3. События с выбором: без сюжетной иллюстрации (14)
+- power_cut — В мастерской отключили электричество
+- employee_raise — Сотрудник просит повышение
+- big_client — Крупный клиент просит срочный ремонт
+- inspection — Проверка документов
+- internet_outage — Отключили интернет
+- small_flood — Небольшая протечка в мастерской
+- vehicle_breakdown — Транспорт потребовал ремонта
+- inheritance_phone — Дальняя родственница оставила старый мобильный телефон
+- small_inheritance — Небольшое наследство
+- recommendation — Знакомый порекомендовал вас клиенту
+- racket_visit — В мастерскую пришли «решать вопросы»
+- broken_window — Ночью разбили окно мастерской
+- street_pressure — Компания со двора требует бесплатный ремонт
+- stolen_tools — Из мастерской пропал ящик инструментов
+
+## ПРИОРИТЕТ 3. Городские точки: эмодзи (6)
+- home — Дом
+- market — Радиорынок
+- college — Институтский квартал
+- business — Деловой район
+- club — Компьютерный клуб
+- dump — Склад списанной техники
+
+## ПРИОРИТЕТ 3. Отделы компании: эмодзи (7)
+- reception — Приёмка
+- repair — Ремонтный отдел
+- field — Выездная служба
+- warehouse — Складской отдел
+- corporate — Корпоративный отдел
+- marketing — Рекламный отдел
+- accounting — Бухгалтерия
+
+## ПРИОРИТЕТ 3. Этапы компании: эмодзи/общая картинка бизнеса (5)
+- 1 — Работа на дому
+- 2 — Домашняя мастерская
+- 3 — Арендованный офис
+- 4 — Сервисная компания
+- 5 — Региональная IT-фирма
+
+## ПРИОРИТЕТ 3. Обучение сотрудников: эмодзи (4)
+- practice — Практикум в мастерской
+- vendor — Курс производителя
+- college — Отраслевой интенсив
+- leadership — Подготовка руководителя
+
+## ПРИОРИТЕТ 3. Банковские продукты: эмодзи (7)
+- d1 — Вклад «Надёжный» (30 дн.)
+- d2 — Вклад «Доходный» (90 дн.)
+- d3 — Вклад «Капитальный» (180 дн.)
+- d4 — Вклад «Годовой» (360 дн.)
+- l1 — Микрозайм
+- l2 — Бизнес-кредит
+- l3 — Долгосрочный кредит
+
+## ПРИОРИТЕТ 3. Улучшения героя/бизнеса: эмодзи (9)
+- tools — Инструменты
+- bench — Рабочие места
+- ads — Реклама
+- coffee — Кофемашина
+- word — Сарафанное радио
+- lib — Тех. библиотека
+- supply — Поставщик
+- lounge — Зона отдыха
+- diagnostic — Диагн. стенд
+
+## ПРИОРИТЕТ 3. Планы активности: эмодзи (4)
+- balanced — Баланс
+- work — Ударная работа
+- study — Учебный режим
+- business — Управление
+
+## ПРИОРИТЕТ 3. Подходы к ремонту и тестирование: эмодзи (7)
+- careful — Аккуратный ремонт
+- balanced — Стандартное решение
+- economy — Бюджетный ремонт
+- premium — Премиум-решение
+- quick — Быстрый запуск
+- standard — Стандартный тест
+- full — Полный прогон
+
+## ПРИОРИТЕТ 3. Контракты: эмодзи (15)
+- school — Компьютерный класс школы
+- cafe — Интернет-кафе
+- office — Малый офис
+- factory — Производственное предприятие
+- cloud — Облачная инфраструктура стартапа
+- v161_contract_service — Абонентский ремонт офиса
+- v161_contract_builder — Поставка компьютеров учебному центру
+- v161_contract_network — Поддержка сети бизнес-центра
+- v161_contract_web — Серия сайтов для торговой сети
+- v161_contract_training — Корпоративное обучение персонала
+- v161_contract_isp — Домовая сеть микрорайона
+- v161_contract_software — Поставка ПО малому бизнесу
+- v161_contract_outsource — Полный IT-аутсорсинг сети магазинов
+- v161_contract_support — Техподдержка интернет-магазина
+- v161_contract_data — Резервное восстановление для юрлиц
+
+## ПРИОРИТЕТ 3. Автоматизация и награды наследия: эмодзи (17)
+- restock — Автозакупка расходников
+- simple_apprentice — Простые заказы — ученику
+- network_sysadmin — Сетевые задачи — системному администратору
+- warranty_priority — Гарантии в приоритет
+- expensive_player — Дорогие заказы оставить игроку
+- auto_course — Продолжать очередь обучения
+- starter_cash — Стартовый капитал
+- starter_skill — Опыт прошлого
+- extra_slot — Организованность
+- fast_study — Учебная привычка
+- rare_tool — Семейный инструмент
+- client_book — Старая записная книжка
+- first_pc — Премия начинающему мастеру и первая рекомендация.
+- internet — Репутация сетевого специалиста и доступ к крупным клиентам.
+- service — Сервис признан одним из лучших в городе.
+- business — Бренд мастерской стал известен за пределами района.
+- empire — Цифровая империя завершает кампанию на пике развития.
+
+## ПРИОРИТЕТ 3. Черты сотрудников: эмодзи (7)
+- meticulous — Педант
+- fast — Шустрый
+- sociable — Общительный
+- thrifty — Бережливый
+- mentor — Наставник
+- ambitious — Амбициозный
+- unreliable — Ненадёжный
+
+## ПРИОРИТЕТ 3. Семейные задания: эмодзи (30)
+- wt1 — Поменяй перегоревшую лампочку
+- wt2 — Почини кран — капает
+- wt3 — Отвези меня на рынок
+- wt4 — Собери шкаф из IKEA
+- wt5 — Купи продукты домой
+- wt6 — Убери квартиру перед гостями
+- wt7 — Поклей обои в спальне
+- wt8 — Заберёт машину с сервиса
+- wt9 — Отведи ребёнка в садик
+- wt10 — Купи мне новый телефон
+- wt11 — Съезди с семьёй на шашлыки
+- wt12 — Запишись к врачу вместе
+- wt13 — Поставь кондиционер
+- wt14 — Сделай косметический ремонт кухни
+- wt15 — Замени окна в квартире
+- wt16 — Купи мне новую шубу
+- wt17 — Давай купим новый диван
+- wt18 — Поехали в отпуск в Турцию
+- wt19 — Купи дачу наконец
+- wt20 — Смени квартиру на большую
+- wt21 — Купи мне машину
+- wt22 — Сделай капитальный ремонт
+- wt23 — Съездим в Европу отдохнуть
+- wt24 — Купи посудомоечную машину
+- wt25 — Установи охранную сигнализацию
+- wt26 — Отремонтируй балкон
+- wt27 — Купи новый холодильник
+- wt28 — Почини стиральную машину
+- wt29 — Купи детскую кроватку
+- wt30 — Сделай шикарный ремонт в доме
+
+## ПРИОРИТЕТ 3. Старые случайные события: эмодзи в названии (9)
+- surge — ⚡ Скачок напряжения
+- found — 🍀 Находка
+- tip — 💰 Чаевые
+- badrev — 😤 Плохой отзыв
+- goodrev — 🌟 Рекомендация
+- inspire — 💡 Вдохновение
+- sale — 🏷️ Скидка поставщика
+- burnout — 😩 Выгорание
+- energy — 🔋 Отличный сон!
+
+## ПРИОРИТЕТ 3. Испытания: без отдельной картинки (3)
+- million_2010 — Миллион до 2010
+- no_credit — Без кредитов
+- perfect_service — Идеальный сервис
+
+## ПРИОРИТЕТ 3. Стартовые бэкграунды: используются иконки навыков, нет собственной сцены (8)
+- hardware — Железо
+- software — Софт
+- networking — Сети
+- repair — Ремонт
+- security — Безопасность
+- data — Данные
+- communication — Общение
+- management — Управление
+
+## УЖЕ ПОКРЫТО ОТДЕЛЬНЫМИ ИЗОБРАЖЕНИЯМИ ИЛИ НАБОРАМИ
+- Аватары героя: 13 профилей по эпохам.
+- Навыки: 8 отдельных изображений.
+- Помещения: 5 изображений.
+- Транспорт: 6 изображений.
+- Отдых: 7 изображений.
+- Мастерская: 25 предметов с уровнями.
+- Типы заказов: 16 изображений, которыми покрываются конкретные заказы.
+- Типы бизнеса: 10 направлений с изображениями стадий.
+
+Рекомендуемый порядок производства: 1) комплектующие, 2) обложки книг/материалов, 3) события, 4) достижения и карьера, 5) остальные управленческие карточки.
+
+## СГРУППИРОВАННЫЕ БЛОКИ ИМУЩЕСТВА БЕЗ ИКОНОК
+- Процессоры
+- Видеокарты
+- Оперативная память SDRAM
+- Оперативная память DDR
+- Оперативная память DDR2
+- Оперативная память DDR3
+- Жёсткие диски HDD
+- SSD-накопители
+- Дисководы и оптические приводы
+- Материнские платы
+- Блоки питания
+- Корпуса tower
+- Охлаждение
+- Периферия
+- Мониторы
+- Мыши
+- Сетевое оборудование
+- Термопасты
+- Расходники и ПО
+- Установочные носители и ПО
+- Инструменты
+- Паяльники и пайка
+- Измерительные и диагностические инструменты
+- Сетевые инструменты

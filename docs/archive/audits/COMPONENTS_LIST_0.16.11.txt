@@ -1,0 +1,239 @@
+ХРОНИКИ АЙТИШНИКА 0.16.11 — ПОЛНЫЙ СПИСОК КОМПЛЕКТУЮЩИХ (ДО 2010 ГОДА)
+
+Всего позиций: 213.
+Формат: ID — название — год появления — уровень.
+
+## Процессоры (40)
+- cpu_cel_533 — Celeron 533 MHz — с 2000 г. — ур. 1
+- cpu_p3_600 — Pentium III 600E — с 2000 г. — ур. 1
+- cpu_p3_800 — Pentium III 800 EB — с 2000 г. — ур. 2
+- cpu_p3_1g — Pentium III 1GHz — с 2000 г. — ур. 2
+- cpu_p3_slot1 — Pentium III 550 (Slot1) — с 2000 г. — ур. 1
+- cpu_k6_500 — AMD K6-2 500 — с 2000 г. — ур. 1
+- cpu_athlon_700 — AMD Athlon 700 (Slot A) — с 2000 г. — ур. 1
+- cpu_athlon_1g — AMD Athlon 1GHz (Slot A) — с 2000 г. — ур. 2
+- cpu_duron_700 — AMD Duron 700 — с 2000 г. — ур. 1
+- cpu_athlon_xp1700 — Athlon XP 1700+ — с 2001 г. — ур. 2
+- cpu_athlon_xp2000 — Athlon XP 2000+ — с 2002 г. — ур. 2
+- cpu_athlon_xp2500 — Athlon XP 2500+ (Barton) — с 2003 г. — ур. 2
+- cpu_p4_1_6 — Pentium 4 1.6 GHz — с 2001 г. — ур. 2
+- cpu_p4_2_0 — Pentium 4 2.0 GHz — с 2001 г. — ур. 2
+- cpu_p4_2_4 — Pentium 4 2.4 GHz — с 2002 г. — ур. 2
+- cpu_p4_2_8 — Pentium 4 2.8 GHz — с 2003 г. — ур. 3
+- cpu_cel_d — Celeron D 2.8 GHz — с 2004 г. — ур. 1
+- cpu_p4_ht_3g — Pentium 4 HT 3.0 GHz — с 2004 г. — ур. 2
+- cpu_p4_660 — Pentium 4 660 (3.6 GHz HT) — с 2005 г. — ур. 3
+- cpu_pentd_820 — Pentium D 820 (2x2.8GHz) — с 2005 г. — ур. 2
+- cpu_pentd_940 — Pentium D 940 (2x3.2GHz) — с 2006 г. — ур. 3
+- cpu_c2d_e4300 — Core 2 Duo E4300 — с 2007 г. — ур. 2
+- cpu_c2d_e6300 — Core 2 Duo E6300 — с 2006 г. — ур. 2
+- cpu_c2d_e6600 — Core 2 Duo E6600 — с 2006 г. — ур. 3
+- cpu_c2d_e8400 — Core 2 Duo E8400 — с 2008 г. — ур. 3
+- cpu_c2q_q6600 — Core 2 Quad Q6600 — с 2007 г. — ур. 3
+- cpu_c2q_q9400 — Core 2 Quad Q9400 — с 2008 г. — ур. 3
+- cpu_c2q_q9550 — Core 2 Quad Q9550 — с 2008 г. — ур. 4
+- cpu_ath64_3200 — Athlon 64 3200+ — с 2005 г. — ур. 2
+- cpu_ath64_3500 — Athlon 64 3500+ — с 2005 г. — ур. 2
+- cpu_ath64x2_4200 — Athlon 64 X2 4200+ — с 2005 г. — ур. 3
+- cpu_ath64x2_5000 — Athlon 64 X2 5000+ — с 2007 г. — ур. 3
+- cpu_ph_9500 — Phenom X4 9500 — с 2007 г. — ур. 3
+- cpu_i7_920 — Core i7-920 — с 2008 г. — ур. 4
+- cpu_i7_950 — Core i7-950 — с 2009 г. — ур. 4
+- cpu_i7_980x — Core i7-980X Extreme — с 2010 г. — ур. 5
+- cpu_ph2_x4_810 — Phenom II X4 810 — с 2009 г. — ур. 3
+- cpu_ph2_x4_955 — Phenom II X4 955 BE — с 2009 г. — ур. 3
+- cpu_ph2_x6_1055 — Phenom II X6 1055T — с 2010 г. — ур. 4
+- cpu_ph2_x6_1090 — Phenom II X6 1090T BE — с 2010 г. — ур. 4
+
+## Видеокарты (38)
+- gpu_gf2_mx — GeForce 2 MX 200 — с 2000 г. — ур. 1
+- gpu_gf2_gts — GeForce 2 GTS — с 2000 г. — ур. 1
+- gpu_gf3_ti200 — GeForce 3 Ti 200 — с 2001 г. — ур. 2
+- gpu_gf3_ti500 — GeForce 3 Ti 500 — с 2001 г. — ур. 2
+- gpu_gf4_ti4200 — GeForce 4 Ti 4200 — с 2002 г. — ур. 2
+- gpu_gf4_ti4600 — GeForce 4 Ti 4600 — с 2002 г. — ур. 2
+- gpu_r8500 — Radeon 8500 — с 2001 г. — ур. 2
+- gpu_r9200 — Radeon 9200 — с 2002 г. — ур. 1
+- gpu_r9600 — Radeon 9600 Pro — с 2003 г. — ур. 2
+- gpu_r9800 — Radeon 9800 Pro — с 2003 г. — ур. 3
+- gpu_gf6200 — GeForce 6200 — с 2004 г. — ур. 1
+- gpu_gf6600 — GeForce 6600 — с 2004 г. — ур. 2
+- gpu_gf6600gt — GeForce 6600 GT — с 2004 г. — ур. 2
+- gpu_gf6800 — GeForce 6800 GT — с 2004 г. — ур. 3
+- gpu_gf7600 — GeForce 7600 GT — с 2006 г. — ур. 2
+- gpu_gf7800gt — GeForce 7800 GT — с 2005 г. — ур. 3
+- gpu_gf7900gtx — GeForce 7900 GTX — с 2006 г. — ур. 3
+- gpu_rx1600 — Radeon X1600 XT — с 2005 г. — ур. 2
+- gpu_rx1800 — Radeon X1800 XL — с 2005 г. — ур. 3
+- gpu_rx1950 — Radeon X1950 Pro — с 2006 г. — ур. 2
+- gpu_gf8600 — GeForce 8600 GT — с 2007 г. — ур. 2
+- gpu_gf8800gts — GeForce 8800 GTS 640 — с 2006 г. — ур. 3
+- gpu_gf8800gtx — GeForce 8800 GTX — с 2006 г. — ур. 4
+- gpu_gf9600 — GeForce 9600 GT — с 2008 г. — ур. 2
+- gpu_gf9800 — GeForce 9800 GT — с 2008 г. — ур. 3
+- gpu_gtx260 — GeForce GTX 260 — с 2008 г. — ур. 3
+- gpu_gtx280 — GeForce GTX 280 — с 2008 г. — ур. 4
+- gpu_hd4850 — Radeon HD 4850 — с 2008 г. — ур. 3
+- gpu_hd4870 — Radeon HD 4870 — с 2008 г. — ур. 3
+- gpu_hd5770 — Radeon HD 5770 — с 2009 г. — ур. 3
+- gpu_hd5850 — Radeon HD 5850 — с 2009 г. — ур. 3
+- gpu_hd5870 — Radeon HD 5870 — с 2009 г. — ур. 4
+- gpu_gtx460 — GeForce GTX 460 — с 2010 г. — ур. 3
+- gpu_gtx470 — GeForce GTX 470 — с 2010 г. — ур. 3
+- gpu_gtx480 — GeForce GTX 480 — с 2010 г. — ур. 4
+- gpu_gtx570 — GeForce GTX 570 — с 2010 г. — ур. 3
+- gpu_gtx580 — GeForce GTX 580 — с 2010 г. — ур. 4
+- gpu_hd6870 — Radeon HD 6870 — с 2010 г. — ур. 3
+
+## Оперативная память (14)
+- ram_sd32 — SDRAM 32MB — с 2000 г. — ур. 1
+- ram_sd64 — SDRAM 64MB — с 2000 г. — ур. 1
+- ram_sd128 — SDRAM 128MB — с 2000 г. — ур. 1
+- ram_sd256 — SDRAM 256MB — с 2001 г. — ур. 2
+- ram_ddr256 — DDR 256MB — с 2002 г. — ур. 1
+- ram_ddr512 — DDR 512MB — с 2002 г. — ур. 2
+- ram_ddr1g — DDR 1GB — с 2004 г. — ур. 2
+- ram_ddr2_512 — DDR2 512MB — с 2005 г. — ур. 1
+- ram_ddr2_1g — DDR2 1GB — с 2005 г. — ур. 1
+- ram_ddr2_2g — DDR2 2GB — с 2006 г. — ур. 2
+- ram_ddr2_4g — DDR2 4GB (2x2GB) — с 2008 г. — ур. 2
+- ram_ddr3_1g — DDR3 1GB — с 2008 г. — ур. 1
+- ram_ddr3_2g — DDR3 2GB — с 2008 г. — ур. 1
+- ram_ddr3_4g — DDR3 4GB — с 2009 г. — ур. 2
+
+## Накопители (19)
+- hdd_6g — HDD 6GB — с 2000 г. — ур. 1
+- hdd_10g — HDD 10GB — с 2000 г. — ур. 1
+- hdd_20g — HDD 20GB — с 2000 г. — ур. 1
+- hdd_40g — HDD 40GB — с 2001 г. — ур. 1
+- hdd_60g — HDD 60GB — с 2002 г. — ур. 1
+- hdd_80g — HDD 80GB — с 2003 г. — ур. 1
+- hdd_120g — HDD 120GB — с 2004 г. — ур. 1
+- hdd_160g — HDD 160GB — с 2005 г. — ур. 2
+- hdd_250g — HDD 250GB — с 2006 г. — ур. 2
+- hdd_320g — HDD 320GB — с 2007 г. — ур. 2
+- hdd_500g — HDD 500GB — с 2008 г. — ур. 2
+- hdd_1t — HDD 1TB — с 2009 г. — ур. 2
+- hdd_2t — HDD 2TB — с 2010 г. — ур. 3
+- ssd_32g — SSD 32GB (первые!) — с 2008 г. — ур. 3
+- ssd_64g — SSD 64GB — с 2009 г. — ур. 3
+- floppy — Дисковод 3.5" — с 2000 г. — ур. 1
+- cdrom — CD-ROM 52x — с 2000 г. — ур. 1
+- dvdrom — DVD-ROM/RW — с 2003 г. — ур. 1
+- bluray — Blu-ray привод — с 2008 г. — ур. 2
+
+## Материнские платы (17)
+- mb_slot1 — Intel 440BX (Slot1) — с 2000 г. — ур. 1
+- mb_s370_815 — Intel i815 (Socket370) — с 2000 г. — ур. 1
+- mb_s370_694 — VIA 694X (Socket370) — с 2000 г. — ур. 1
+- mb_s7_via — VIA MVP3 (Socket7) — с 2000 г. — ур. 1
+- mb_slota — VIA KX133 (Slot A) — с 2000 г. — ур. 1
+- mb_s462_via — VIA KT266 (Socket462) — с 2001 г. — ур. 1
+- mb_s462_nf — nForce2 (Socket462) — с 2002 г. — ур. 2
+- mb_478_845 — Intel 845 (Socket478) — с 2001 г. — ур. 1
+- mb_478_865 — Intel 865PE (Socket478) — с 2003 г. — ур. 2
+- mb_775_945 — Intel 945G (LGA775) — с 2005 г. — ур. 2
+- mb_775_965 — Intel P965 (LGA775) — с 2006 г. — ур. 2
+- mb_775_680i — nForce 680i SLI (LGA775) — с 2006 г. — ур. 3
+- mb_775_p45 — Intel P45 (LGA775) — с 2008 г. — ур. 2
+- mb_am2_690 — AMD 690G (AM2) — с 2005 г. — ур. 2
+- mb_am2_780 — AMD 780G (AM2) — с 2008 г. — ур. 2
+- mb_1366_x58 — Intel X58 (LGA1366) — с 2008 г. — ур. 3
+- mb_am3_870 — AMD 870 (AM3) — с 2009 г. — ур. 2
+
+## Блоки питания (9)
+- psu_200 — БП 200W ATX — с 2000 г. — ур. 1
+- psu_250 — БП 250W ATX — с 2000 г. — ур. 1
+- psu_300 — БП 300W — с 2001 г. — ур. 1
+- psu_350 — БП 350W — с 2002 г. — ур. 1
+- psu_400 — БП 400W — с 2004 г. — ур. 2
+- psu_450 — БП 450W 80+ — с 2006 г. — ур. 2
+- psu_500 — БП 500W 80+ — с 2007 г. — ур. 2
+- psu_550 — БП 550W Bronze — с 2009 г. — ур. 2
+- psu_600 — БП 600W Gold — с 2010 г. — ур. 3
+
+## Корпуса (7)
+- case_at_tower — AT Full Tower (2000) — с 2000 г. — ур. 1
+- case_atx_midi — ATX Midi Tower — с 2000 г. — ур. 1
+- case_cheap — Корпус NoName — с 2003 г. — ур. 1
+- case_mid_05 — Mid Tower (2005) — с 2005 г. — ур. 2
+- case_lian_li — Lian Li PC60 — с 2004 г. — ур. 3
+- case_mid_atx — Mid ATX Tower — с 2008 г. — ур. 2
+- case_antec — Antec Three Hundred — с 2009 г. — ур. 3
+
+## Охлаждение (5)
+- cool_box_old — Стоковый кулер (2000-е) — с 2000 г. — ур. 1
+- cool_zalman_flower — Zalman CNPS7000 (цветок) — с 2003 г. — ур. 2
+- cool_scythe_mine — Scythe Mine (башня) — с 2007 г. — ур. 2
+- cool_noctua_u9 — Noctua NH-U9 — с 2008 г. — ур. 3
+- cool_noctua_d14 — Noctua NH-D14 — с 2010 г. — ур. 3
+
+## Периферия (24)
+- mon_crt15 — ЭЛТ монитор 15" — с 2000 г. — ур. 1
+- mon_crt17 — ЭЛТ монитор 17" — с 2000 г. — ур. 1
+- mon_crt19 — ЭЛТ монитор 19" (Trinitron) — с 2000 г. — ур. 2
+- mon_lcd15 — LCD 15" (первые) — с 2002 г. — ур. 2
+- mon_lcd17 — LCD 17" — с 2004 г. — ур. 2
+- mon_lcd19_sq — LCD 19" (4:3) — с 2006 г. — ур. 2
+- mon_lcd22 — LCD 22" Wide — с 2008 г. — ур. 2
+- mon_24_fhd — Monitor 24" FHD — с 2010 г. — ур. 3
+- kb_ps2 — Клава PS/2 офисная — с 2000 г. — ур. 1
+- kb_usb_basic — Клава USB простая — с 2002 г. — ур. 1
+- ms_ball — Мышь шариковая PS/2 — с 2000 г. — ур. 1
+- ms_optical_00 — Мышь оптическая IntelliMouse — с 2000 г. — ур. 1
+- ms_logitech_g3 — Logitech G3 лазерная — с 2006 г. — ур. 2
+- ms_mx518 — Logitech MX518 — с 2004 г. — ур. 2
+- ms_deathadder — Razer DeathAdder — с 2007 г. — ур. 3
+- printer_dot — Матричный принтер — с 2000 г. — ур. 2
+- printer_ink — Струйный принтер — с 2000 г. — ур. 2
+- printer_laser — Лазерный принтер HP — с 2002 г. — ур. 3
+- net_modem — Модем 56k — с 2000 г. — ур. 1
+- net_adsl — ADSL роутер — с 2003 г. — ур. 2
+- net_wifi_router — Wi-Fi роутер 802.11g — с 2004 г. — ур. 2
+- net_wifi_n — Wi-Fi роутер 802.11n — с 2009 г. — ур. 2
+- net_switch — Управляемый свитч 24p — с 2005 г. — ур. 3
+- net_nic_1g — Сетевая карта 1Gb — с 2004 г. — ур. 2
+
+## Расходники и ПО (20)
+- therm — Термопаста КПТ-8 — с 2000 г. — ур. 1
+- therm_mx4 — Термопаста MX-4 — с 2008 г. — ур. 2
+- air — Сжатый воздух — с 2000 г. — ур. 1
+- alco — Изопропиловый спирт — с 2000 г. — ур. 1
+- ide_c — IDE (40-pin) кабель — с 2000 г. — ур. 1
+- sata_c — SATA кабель — с 2004 г. — ур. 1
+- win98_cd — Windows 98 SE (диск) — с 2000 г. — ур. 1
+- win2k_cd — Windows 2000 (диск) — с 2000 г. — ур. 1
+- winxp_cd — Windows XP Home (диск) — с 2002 г. — ур. 1
+- winxp_pro_cd — Windows XP Pro (диск) — с 2002 г. — ур. 2
+- win_vista_dvd — Windows Vista (DVD) — с 2007 г. — ур. 1
+- win7_usb — Windows 7 (USB) — с 2009 г. — ур. 2
+- av_kasper — Антивирус Kaspersky — с 2002 г. — ур. 2
+- av_eset — ESET NOD32 — с 2003 г. — ур. 2
+- av_drweb — Dr.Web (отечественный) — с 2000 г. — ур. 2
+- linux_usb — Ubuntu Linux (флешка) — с 2006 г. — ур. 1
+- paste_brush — Кисточка для чистки — с 2000 г. — ур. 1
+- screen_cloth — Салфетки для экранов — с 2000 г. — ур. 1
+- usb_stick_1g — USB флешка 1GB — с 2004 г. — ур. 1
+- usb_stick_8g — USB флешка 8GB — с 2008 г. — ур. 1
+
+## Инструменты (20)
+- tool_screw_basic — Набор отвёрток (простой) — с 2000 г. — ур. 1
+- tool_screw_set — Набор отвёрток Pro (30 штук) — с 2000 г. — ур. 2
+- tool_tweezer — Пинцет антистатический — с 2000 г. — ур. 1
+- tool_anti_mat — Антистатический коврик — с 2000 г. — ур. 1
+- tool_wrist — Антистатический браслет — с 2000 г. — ур. 1
+- tool_multimeter — Мультиметр DT-830 — с 2000 г. — ур. 1
+- tool_multi_pro — Мультиметр Fluke 87V — с 2005 г. — ур. 3
+- tool_solder_iron — Паяльник 40W — с 2000 г. — ур. 1
+- tool_solder_sta — Паяльная станция Hakko — с 2004 г. — ур. 3
+- tool_hot_air — Паяльный фен (BGA) — с 2006 г. — ур. 3
+- tool_microscope — USB-микроскоп 50x — с 2010 г. — ур. 3
+- tool_osc_analog — Осциллограф аналог. — с 2000 г. — ур. 3
+- tool_osc_digital — Осциллограф цифровой — с 2008 г. — ур. 4
+- tool_usb_flash — Загрузочная флешка — с 2006 г. — ур. 1
+- tool_power_test — Тестер БП ATX — с 2004 г. — ур. 2
+- tool_post_card — POST диагностическая карта — с 2003 г. — ур. 2
+- tool_cable_test — Тестер кабелей RJ45 — с 2005 г. — ур. 2
+- tool_crimper — Кримпер RJ45/RJ11 — с 2000 г. — ур. 1
+- tool_rack_mount — 19" монтажная стойка — с 2008 г. — ур. 4
+- tool_label — Принтер этикеток — с 2010 г. — ур. 2

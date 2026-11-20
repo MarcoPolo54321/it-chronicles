@@ -1,0 +1,67 @@
+{
+  "name": "Хроники Айтишника",
+  "version": "0.17.3",
+  "androidVersionCode": 1703,
+  "androidVersionName": "0.17.3",
+  "saveVersion": 17,
+  "author": "Ивасик",
+  "advertisingSources": 30,
+  "emojiAudit": "passed",
+  "keyFiles": [
+    {
+      "path": "package.json",
+      "bytes": 1337,
+      "sha256": "b0c630c59ea8b1a43b05ca9ebf39c23b493a9022ddf7e06e6e7a4395690c948c"
+    },
+    {
+      "path": "BUILD_UPDATE.bat",
+      "bytes": 110,
+      "sha256": "373c924903feb93ecb936d13483bc16f27deb3e82439bba31705d961ea928718"
+    },
+    {
+      "path": "BUILD_UPDATE.ps1",
+      "bytes": 7510,
+      "sha256": "ea4a1ff8b44d6b0063a11ed440e19fe042e84d37f8ba45a42d2dd03adffaf11a"
+    },
+    {
+      "path": "www/index.html",
+      "bytes": 619,
+      "sha256": "df6629c9fea487076a8886c6bedd834b9bf9785e43dcdb7aa0312984a82ef9eb"
+    },
+    {
+      "path": "www/js/app.js",
+      "bytes": 41337,
+      "sha256": "19491cb369a364c1ed7734851c3432c1eefcec1d1b903cbac833485f6f6e3d65"
+    },
+    {
+      "path": "www/js/ui/render.js",
+      "bytes": 187021,
+      "sha256": "746af109e5077d706104071d51a8673ef177d2a282df475b408d79e316037248"
+    },
+    {
+      "path": "www/css/app.css",
+      "bytes": 152687,
+      "sha256": "9e88cede05eb60499689233a5e1b288f3c9160c9bb8e06555f6f51c3627d346a"
+    },
+    {
+      "path": "scripts/regression-v173.mjs",
+      "bytes": 4786,
+      "sha256": "172bc91ecf7bb6913ff190bf9d6d8e0602e4b32b42032562b217309d184d0b4b"
+    },
+    {
+      "path": "ADVERTISING_SOURCES_0.17.3.txt",
+      "bytes": 8797,
+      "sha256": "ead4d2a88b3921070230dec572542b5377301b7eae1a282850bd501282f4d78b"
+    },
+    {
+      "path": "CHANGELOG_v0.17.3.txt",
+      "bytes": 3785,
+      "sha256": "1a250c706acbaaa975c2f40cc76004829e2fdda6aa76833281edee963f196401"
+    },
+    {
+      "path": "BUILD_VALIDATION_0.17.3.txt",
+      "bytes": 809,
+      "sha256": "44efd2f521d2bc12e5ccc9ab80d09014115119f58cd36a529b13d90f8a646935"
+    }
+  ]
+}

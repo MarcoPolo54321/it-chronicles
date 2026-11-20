@@ -1,0 +1,12 @@
+{
+  "appId": "ru.itchronicles.game",
+  "appName": "Хроники Айтишника",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#080a09"
+  }
+}

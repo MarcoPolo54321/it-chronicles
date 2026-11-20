@@ -1,0 +1,31 @@
+{
+  "name": "it-chronicles",
+  "version": "0.18.3",
+  "private": true,
+  "description": "Хроники Айтишника v0.18.3: визуальная полировка интерфейса, доработка заказов и улучшения перед открытым тестом",
+  "scripts": {
+    "serve": "npx serve www",
+    "android:add": "npx cap add android",
+    "android:sync": "npx cap sync android",
+    "android:open": "npx cap open android",
+    "android:build": "cd android && gradlew.bat assembleDebug --no-watch-fs",
+    "test:smoke": "node scripts/smoke-test.mjs",
+    "test:v169": "node scripts/regression-v169.mjs",
+    "test": "npm run test:smoke && npm run test:v169 && npm run test:v1610 && npm run test:v1611 && npm run test:v170 && npm run test:v172 && npm run test:v173 && npm run test:v180 && npm run test:v182 && npm run test:assets",
+    "test:assets": "node scripts/validate-assets.mjs",
+    "test:v1610": "node scripts/regression-v1610.mjs",
+    "test:v1611": "node scripts/regression-v1611.mjs",
+    "test:v170": "node scripts/regression-v170.mjs",
+    "test:v172": "node scripts/regression-v172.mjs",
+    "test:v173": "node scripts/regression-v173.mjs",
+    "test:v180": "node scripts/regression-v180.mjs",
+    "test:v182": "node scripts/regression-v182.mjs"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/cli": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/app": "^7.0.0"
+  },
+  "type": "module"
+}

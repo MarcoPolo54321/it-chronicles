@@ -1,0 +1,18 @@
+Хроники Айтишника v0.17.2 — проверка исходного пакета
+
+- package version: 0.17.2
+- Android versionCode: 1702
+- Android versionName: 0.17.2
+- схема сохранения: 17
+- кампания: 2000–2010
+- обычные заказы без активного срока: OK
+- гарантийные и корпоративные сроки: OK
+- пост-2010 контент в основных игровых массивах: отсутствует
+- ui-v171 PNG: 0
+- ui-v171 WebP: 69
+- npm test: OK
+- проверка ассетов: OK
+
+Build fix:
+- BUILD_UPDATE.ps1 now repairs incomplete node_modules and retries npm install with legacy peer resolution.
+- Android local.properties is created only after the Android platform directory exists.

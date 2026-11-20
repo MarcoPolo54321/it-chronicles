@@ -1,0 +1,29 @@
+Хроники Айтишника v0.17.0 — проверка исходного пакета
+
+Версия:
+- package version: 0.17.0
+- Android versionCode: 1700
+- Android versionName: 0.17.0
+- итоговое имя APK: Hroniki-Aytishnika-v0.17.0.apk
+
+Функциональные проверки:
+- ежедневная стоимость питания: OK
+- ресторан 1 200 ₽ за один игровой день: OK
+- блок «Сейчас в фокусе» удалён: OK
+- барахолка вынесена в «Ещё»: OK
+- внутренняя навигация Android Back: OK
+- требования навыков в событиях: OK
+- событие остаётся открытым после неудачного выбора: OK
+- автоматическое создание android/local.properties: OK
+- каталог событий EVENT_STORIES_0.17.0.txt: OK
+
+Тесты:
+- Smoke test v0.17.0: OK
+- Regression v0.16.9: OK
+- Regression v0.16.10: OK
+- Regression v0.16.11: OK
+- Regression v0.17.0: OK
+- Asset validation: OK
+- JavaScript syntax check: OK
+
+Архив должен содержать файлы проекта непосредственно в корне, без папки-обёртки.

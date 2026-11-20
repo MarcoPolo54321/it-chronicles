@@ -1,0 +1,18 @@
+Хроники Айтишника v0.17.3 — проверка исходного пакета
+
+- package version: 0.17.3
+- Android versionCode: 1703
+- Android versionName: 0.17.3
+- итоговое имя APK: Hroniki-Aytishnika-v0.17.3.apk
+- стартовый бэкграунд без emoji: OK
+- изображения главных показателей: OK
+- объединённый раздел героя: OK
+- банк без налоговой механики: OK
+- достижения без emoji-замков: OK
+- панель барахолки на всю ширину: OK
+- список рекламных источников: 30 позиций
+- аудит emoji исходников: OK
+- Smoke test: OK
+- Regression compatibility: OK
+- Regression v0.17.3: OK
+- Asset validation: OK
