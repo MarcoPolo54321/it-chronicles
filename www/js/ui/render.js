@@ -498,17 +498,14 @@ function sectionNav(items, active, scope) {
   return `<div class="section-tabs ${scope}-tabs">${items.map(([id, label]) => `<button class="${active === id ? 'active' : ''}" data-action="section-tab" data-scope="${scope}" data-value="${id}">${label}</button>`).join('')}</div>`;
 }
 
-export function renderProfiles(profiles, ui) {
+export function renderProfiles(profiles) {
   const created=profiles.map((profile,index)=>({profile,index})).filter(item=>item.profile);
   const firstEmpty=profiles.findIndex(profile=>!profile);
   const cards=[...created];
   if(firstEmpty>=0)cards.push({profile:null,index:firstEmpty});
   return `<main class="entry-shell">
     <section class="entry-card panel">
-      <div class="entry-actions">
-        <div class="boot-mark"><span></span><b>Версия ${GAME_VERSION}</b></div>
-        <button class="theme-fab" data-action="toggle-theme" aria-label="Светлая тема" aria-pressed="${ui.theme === 'light'}">Тема</button>
-      </div>
+      <div class="boot-mark"><span></span><b>Версия ${GAME_VERSION}</b></div>
       <div class="entry-brand"><img src="./assets/app-icon.png" alt="" class="entry-icon"><div><p class="eyebrow">РЕТРО-СИМУЛЯТОР КАРЬЕРЫ</p><h1>Хроники<br><em>Айтишника</em></h1></div></div>
       <p class="lead">Начни в 2000-м с дискет, Windows 98 и ремонта домашних ПК. Развивай навыки, мастерскую и бизнес до финала 2010 года.</p>
       <div class="profile-list-title"><strong>Карьеры</strong><small>${created.length} из 10 создано</small></div>
@@ -516,7 +513,15 @@ export function renderProfiles(profiles, ui) {
         ${cards.map(({profile,index})=>{
           if(!profile)return `<button class="profile-slot empty" data-action="new-profile" data-index="${index}"><span class="plus">＋</span><span><strong>Создать карьеру</strong><small>Откроется следующий свободный слот</small></span></button>`;
           const avatar=heroAvatarById(profile.profile.avatar);
-          return `<article class="profile-slot panel-soft"><div class="avatar avatar-image-wrap">${avatarImage(profile.profile.avatar,avatar.name,'avatar-image',profile.calendar?.year||2000)}</div><div class="profile-copy"><strong>${escapeHtml(profile.profile.name)}</strong><small>Слот ${index+1} · ${profile.calendar.year} год · ур. ${profile.player.level} · ${formatMoney(profile.player.cash)}</small></div><div class="profile-actions"><button class="icon-btn primary" data-action="open-profile" data-index="${index}" aria-label="Продолжить">Открыть</button><button class="icon-btn danger" data-action="delete-profile" data-index="${index}" aria-label="Удалить">×</button></div></article>`;
+          const name=escapeHtml(profile.profile.name);
+          return `<article class="profile-slot panel-soft">
+            <div class="avatar avatar-image-wrap">${avatarImage(profile.profile.avatar,avatar.name,'avatar-image',profile.calendar?.year||2000)}</div>
+            <div class="profile-copy"><strong>${name}</strong><small>Слот ${index+1} · ${profile.calendar.year} год · ур. ${profile.player.level} · ${formatMoney(profile.player.cash)}</small></div>
+            <div class="profile-actions">
+              <button class="button primary profile-open" data-action="open-profile" data-index="${index}" aria-label="Открыть карьеру ${name}">Открыть</button>
+              <button class="icon-btn danger" data-action="delete-profile" data-index="${index}" aria-label="Удалить карьеру ${name}">×</button>
+            </div>
+          </article>`;
         }).join('')}
       </div>
       <p class="version-note">Игра работает локально · интернет не требуется · можно создать до 10 карьер</p>
@@ -539,7 +544,6 @@ export function renderSetup(ui) {
     <section class="entry-card panel setup-card">
       <div class="entry-actions">
         <button class="icon-btn" data-action="back-profiles" aria-label="К списку карьер">←</button>
-        <button class="theme-fab" data-action="toggle-theme" aria-label="Светлая тема" aria-pressed="${ui.theme === 'light'}">Тема</button>
       </div>
       <p class="eyebrow">НОВАЯ КАРЬЕРА · СЛОТ ${ui.setupSlot+1}</p><h2>Создание персонажа</h2>
       <label class="field"><span>Имя айтишника</span><input id="playerName" maxlength="20" placeholder="Например: Алекс" autocomplete="off" value="${escapeHtml(ui.playerName||'')}"></label>
@@ -569,7 +573,7 @@ export function renderSetup(ui) {
   </main>`;
 }
 
-function renderHeader(game, ui) {
+function renderHeader(game) {
   const era = getEra(game);
   const energyMax = maxEnergy(game);
   return `<header class="app-header">
@@ -578,7 +582,6 @@ function renderHeader(game, ui) {
       <span class="money-pill"><i class="header-metric-media">${imageIcon(REST_STATUS_ASSETS_V171.money,'Деньги','header-metric-icon')}</i><b>${Math.round(game.player.cash / 1000)}K</b></span>
       <span class="activity-pill"><b>${activityLabel(game)}</b></span>
       <span class="energy-pill"><i class="header-metric-media">${imageIcon(REST_STATUS_ASSETS_V171.energy,'Энергия','header-metric-icon')}</i><b>${Math.round(game.player.energy)}/${energyMax}</b></span>
-      <button class="icon-btn theme-toggle theme-toggle-v181" data-action="toggle-theme" aria-label="Переключить тему"><i>${imageIcon('./assets/ui-v168/menu/settings.webp?v=181','Тема','header-metric-icon')}</i></button>
     </div>
   </header>`;
 }
@@ -1255,13 +1258,12 @@ function renderLog(game, ui) {
   <div class="ledger-list">${structured||emptyState('LOG','Записей пока нет','Выполните заказ, купите предмет, пройдите обучение или примите решение.')}</div>
   <details class="system-log panel"><summary>Технический журнал игры</summary><div class="log-list">${oldLog}</div></details>`;
 }
-function renderSettings(game, ui) {
+function renderSettings(game) {
   ensureV13(game);
   const report = diagnosticReport(game);
   return `<div class="subpage-head"><button class="icon-btn" data-action="more-home">←</button><div>${pageHeader('ПАРАМЕТРЫ', 'Настройки', 'Интерфейс, звук, резервные копии и диагностика')}</div></div>
   <section class="profile-banner panel">${avatarImage(game.profile.avatar, game.profile.name, 'profile-icon-image', game.calendar.year)}<div><h3>${escapeHtml(game.profile.name)}</h3><p>${game.calendar.year} год · ${game.stats.ordersDone} заказов · ур. ${game.player.level}</p></div></section>
   <div class="settings-list panel">
-    <button data-action="toggle-theme"><span><strong>Тема оформления</strong><small>Сейчас включена ${ui.theme === 'light' ? 'светлая' : 'тёмная'} тема</small></span><b>ТЕМА</b></button>
     <label><span><strong>Анимации интерфейса</strong><small>Плавные переходы между состояниями</small></span><input type="checkbox" id="settingAnimations" ${game.settings.animations ? 'checked' : ''}></label>
     <label><span><strong>Уменьшить движение</strong><small>Отключить декоративные переходы и пульсации</small></span><input type="checkbox" id="settingReducedMotion" ${game.visual.reducedMotion ? 'checked' : ''}></label>
     <label><span><strong>Интерфейс эпохи</strong><small>Менять детали оформления вместе с годом</small></span><input type="checkbox" id="settingEraThemes" ${game.visual.eraThemes ? 'checked' : ''}></label>
@@ -1459,7 +1461,7 @@ function renderMore(game, ui) {
     : page === 'rest' ? renderRest(game)
     : page === 'achievements' ? renderAchievements(game)
     : page === 'log' ? renderLog(game,ui)
-    : renderSettings(game, ui);
+    : renderSettings(game);
   return `<section class="screen">${content}</section>`;
 }
 
@@ -1630,5 +1632,5 @@ export function renderGame(game, ui) {
   const visual = currentEraVisual(game);
   const noAnimations = !game.settings.animations || game.visual.reducedMotion;
   const eraClass = game.visual.eraThemes ? `era-${visual.id}` : '';
-  return `<main class="game-shell ${eraClass} ${game.settings.compactMode ? 'compact' : ''} ${noAnimations ? 'no-animations' : ''} ${ui.silentRefresh ? 'silent-refresh' : ''}" style="--era-accent:${era.color || '#46e6d6'}">${renderHeader(game, ui)}<div class="screen-container">${screen}</div>${renderBottomNav(ui)}${ui.toast ? `<div class="toast ${ui.toast.tone || ''}">${escapeHtml(ui.toast.text)}</div>` : ''}${renderModal(game, ui)}</main>`;
+  return `<main class="game-shell ${eraClass} ${game.settings.compactMode ? 'compact' : ''} ${noAnimations ? 'no-animations' : ''} ${ui.silentRefresh ? 'silent-refresh' : ''}" style="--era-accent:${era.color || '#46e6d6'}">${renderHeader(game)}<div class="screen-container">${screen}</div>${renderBottomNav(ui)}${ui.toast ? `<div class="toast ${ui.toast.tone || ''}">${escapeHtml(ui.toast.text)}</div>` : ''}${renderModal(game, ui)}</main>`;
 }

@@ -284,8 +284,9 @@ assert.ok(comparisonHtml.includes('workspace-next-image'));
 
 // v0.16.7: progressive profile slots and redesigned orders.
 const profileSlots=Array(10).fill(null);profileSlots[0]=game;
-const profilesHtml=renderProfiles(profileSlots,{theme:'dark'});
+const profilesHtml=renderProfiles(profileSlots);
 assert.equal((profilesHtml.match(/Создать карьеру/g)||[]).length,1);
+assert.match(profilesHtml, /class="button primary profile-open" data-action="open-profile"/);
 assert.ok(setupHtml.includes('previous-background'));
 assert.ok(!setupHtml.includes('ПОДТВЕРЖДЕНИЕ ВЫБОРА'));
 const orderGame=createNewGame({name:'Orders 0.16.7',specialization:'hardware',avatar:'classic'});

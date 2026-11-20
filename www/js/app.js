@@ -60,8 +60,7 @@ const ui = {
   companyLogo: 'chip',
   companyType: 'service_repair',
   ledgerFilter: 'all',
-  financeReportIndex: 0,
-  theme: savedTheme()
+  financeReportIndex: 0
 };
 
 let profiles = loadProfiles();
@@ -299,26 +298,6 @@ window.addEventListener('unhandledrejection', (event) => {
   game.stability.sessionErrors = game.stability.sessionErrors.slice(0, 20);
 });
 
-function savedTheme() {
-  try { return localStorage.getItem('itc_theme') === 'light' ? 'light' : 'dark'; }
-  catch { return 'dark'; }
-}
-
-function applyTheme(theme, save = true) {
-  ui.theme = theme === 'light' ? 'light' : 'dark';
-  document.documentElement.dataset.theme = ui.theme;
-  document.documentElement.style.colorScheme = ui.theme;
-  const themeMeta = document.querySelector('meta[name="theme-color"]');
-  if (themeMeta) themeMeta.content = ui.theme === 'light' ? '#e9dcc1' : '#080a09';
-  if (save) {
-    try { localStorage.setItem('itc_theme', ui.theme); }
-    catch (error) { console.warn('Не удалось запомнить тему', error); }
-  }
-  if (game) game.settings.themeMode = ui.theme;
-}
-
-applyTheme(ui.theme, false);
-
 function persist() {
   return !game || showSaveResult(saveProfile(profiles, activeIndex, game));
 }
@@ -376,7 +355,7 @@ function render(preserveScroll = false, silent = false) {
   const scrollY = preserveScroll ? window.scrollY : 0;
   const detailsState = captureDetailsState(root);
   ui.silentRefresh = silent;
-  if (ui.mode === 'profiles') root.innerHTML = renderProfiles(profiles, ui);
+  if (ui.mode === 'profiles') root.innerHTML = renderProfiles(profiles);
   else if (ui.mode === 'setup') root.innerHTML = renderSetup(ui);
   else root.innerHTML = renderGame(game, ui);
   restoreDetailsState(root, detailsState);
@@ -449,7 +428,6 @@ function openProfile(index) {
   validateGameState(game,true);
   ui.companyType = game.business?.typeId || 'service_repair';
   refreshOrders(game, true);
-  applyTheme(game.settings?.themeMode || ui.theme);
   ui.mode = 'game';
   ui.tab = 'home';
   ui.morePage = 'home';
@@ -596,7 +574,6 @@ function handleAction(action, element) {
       ensureV166(nextGame); ensureV169(nextGame); ensureV180(nextGame); ensureV182(nextGame);
       ensureV08(nextGame);
       ensureV13(nextGame);
-      nextGame.settings.themeMode = ui.theme;
       refreshOrders(nextGame, true);
       const nextProfiles = [...profiles];
       nextProfiles[ui.setupSlot] = nextGame;
@@ -682,12 +659,6 @@ function handleAction(action, element) {
     case 'workspace-group':
       ui.workspaceGroup = value || 'core';
       render(true);
-      return;
-    case 'toggle-theme':
-      applyTheme(ui.theme === 'dark' ? 'light' : 'dark');
-      persist();
-      if (ui.mode === 'setup') renderSetupSelection(element);
-      else render(true);
       return;
     case 'tutorial-next': {
       const next = Number(element.dataset.step || 0) + 1;

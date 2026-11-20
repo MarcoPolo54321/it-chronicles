@@ -130,7 +130,7 @@ export function createNewGame(profile = {}) {
       fleaFinds: 0
     },
     settings: {
-      themeMode: 'dark',
+      themeMode: 'light',
       animations: true,
       compactMode: false,
       autosave: true,
@@ -199,8 +199,8 @@ export function migrateGame(raw) {
     game.log ||= [];
     game.log.unshift({ id: uid('log'), at: new Date().toISOString(), type: 'success', text: `Бонус стартового направления «${starterBackgroundById(game.profile.specialization).name}» применён отдельно от профиля героя.` });
   }
-  game.settings ||= { themeMode: 'dark', animations: true, compactMode: false, autosave: true, onboardingSeen: false };
-  if (!['dark', 'light'].includes(game.settings.themeMode)) game.settings.themeMode = 'dark';
+  game.settings ||= { animations: true, compactMode: false, autosave: true, onboardingSeen: false };
+  game.settings.themeMode = 'light';
   if (typeof game.settings.onboardingSeen !== 'boolean') game.settings.onboardingSeen = false;
   game.calendar ||= { year:2000, month:1, day:1, hour:0, totalDays:0, totalHours:0 };
   game.calendar.hour = Number(game.calendar.hour || 0);

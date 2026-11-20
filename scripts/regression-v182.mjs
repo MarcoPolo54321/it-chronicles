@@ -45,9 +45,11 @@ assert.equal(specializationPerkV182(game).skill,'hardware');
 const legacy=createNewGame({name:'Legacy'});
 delete legacy.v182;
 legacy.version=18;
+legacy.settings.themeMode='dark';
 const migrated=migrateGame(legacy);
 ensureV182(migrated);
 assert.equal(migrated.version,19);
+assert.equal(migrated.settings.themeMode,'light');
 assert.ok(migrated.v182?.recovery);
 
 // Client archetypes are deterministic, visible and mechanically different.
