@@ -8,9 +8,13 @@ on:
         description: Existing version tag, for example v0.18.4
         required: true
         type: string
+      source_sha:
+        description: Optional full commit SHA for a rebuild of an existing release
+        required: false
+        type: string
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   apk:
@@ -18,14 +22,16 @@ jobs:
     timeout-minutes: 25
     env:
       RELEASE_TAG: ${{ inputs.release_tag }}
+      SOURCE_SHA: ${{ inputs.source_sha }}
     steps:
       - name: Validate tag
         shell: pwsh
         run: |
           if ($env:RELEASE_TAG -cnotmatch '^v\d+\.\d+\.\d+$') { throw 'Expected a version tag such as v0.18.4.' }
+          if ($env:SOURCE_SHA -and $env:SOURCE_SHA -cnotmatch '^[0-9a-f]{40}$') { throw 'Expected a full source commit SHA.' }
       - uses: actions/checkout@v6
         with:
-          ref: refs/tags/${{ inputs.release_tag }}
+          ref: ${{ inputs.source_sha || format('refs/tags/{0}', inputs.release_tag) }}
           persist-credentials: false
       - name: Build Android APK
         shell: pwsh
@@ -34,10 +40,8 @@ jobs:
           if ("v$version" -cne $env:RELEASE_TAG) { throw 'Package version and git tag do not match.' }
           $env:JAVA_HOME = $env:JAVA_HOME_21_X64
           & ./BUILD_UPDATE.ps1
-      - name: Verify signature and publish assets
+      - name: Verify signature and version
         shell: pwsh
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           $project = Get-Content package.json -Raw | ConvertFrom-Json
           $version = $project.version
@@ -47,16 +51,46 @@ jobs:
           $tools = Join-Path $env:ANDROID_HOME 'build-tools/35.0.0'
           $env:JAVA_HOME = $env:JAVA_HOME_21_X64
           $env:Path = "$env:JAVA_HOME\bin;$env:Path"
-          & (Join-Path $tools 'apksigner.bat') verify --verbose --print-certs $apk
+          $signature = & (Join-Path $tools 'apksigner.bat') verify --verbose --print-certs $apk
           if ($LASTEXITCODE -ne 0) { throw 'APK signature verification failed.' }
+          $signature
           $badging = & (Join-Path $tools 'aapt.exe') dump badging $apk
           if ($LASTEXITCODE -ne 0) { throw 'APK manifest verification failed.' }
           $package = $badging | Select-String "^package: name='ru\.itchronicles\.game' versionCode='$($project.androidVersionCode)' versionName='$([regex]::Escape($version))'"
           if (-not $package) { throw 'APK has an unexpected package or version.' }
           $package.Line
 
-          $checksum = "$apk.sha256"
           $hash = (Get-FileHash -LiteralPath $apk -Algorithm SHA256).Hash.ToLowerInvariant()
-          Set-Content -LiteralPath $checksum -Value "$hash  $apk" -Encoding ascii
-          gh release upload $env:RELEASE_TAG $apk $checksum --repo $env:GITHUB_REPOSITORY
-          if ($LASTEXITCODE -ne 0) { throw 'GitHub release upload failed.' }
+          New-Item -ItemType Directory -Path 'dist' -Force | Out-Null
+          Move-Item -LiteralPath $apk -Destination 'dist'
+          Set-Content -LiteralPath "dist/$apk.sha256" -Value "$hash  $apk" -Encoding ascii
+          Set-Content -LiteralPath 'dist/source.txt' -Value (git rev-parse HEAD) -Encoding ascii
+          Set-Content -LiteralPath 'dist/signature.txt' -Value $signature -Encoding ascii
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android-apk
+          path: dist/
+          if-no-files-found: error
+
+  android-smoke:
+    needs: apk
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: android-apk
+          path: dist
+      - name: Enable Android emulator acceleration
+        run: sudo chmod a+rw /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot -camera-back none
+          script: node scripts/check-android-ui.mjs dist/*.apk

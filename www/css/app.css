@@ -84,13 +84,15 @@ p { line-height: 1.5; }
 .profile-slot.empty .plus { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 13px; background: var(--accent-soft); color: var(--accent); font-size: 24px; }
 .profile-slot strong, .profile-slot small { display: block; }
 .profile-slot small { margin-top: 4px; color: var(--muted); font-size: 11px; }
+.profile-slot.panel-soft { flex-wrap: wrap; gap: 8px 10px; }
+.profile-identity { display: flex; flex: 1 1 146px; align-items: center; gap: 10px; min-width: 0; }
 .profile-copy { min-width: 0; flex: 1; }
 .profile-copy strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.profile-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 6px; }
+.profile-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 6px; margin-inline-start: auto; max-width: 100%; }
 .profile-actions .profile-open {
   min-height: 44px;
   padding-inline: 12px;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 .profile-actions .profile-open:active { transform: none; }
 .profile-actions .icon-btn { width: 44px; height: 44px; }
@@ -1248,17 +1250,6 @@ textarea {
   .version-note { margin-top: 10px; }
 }
 
-@media (max-width: 360px) {
-  .profile-slot.panel-soft {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 8px 10px;
-  }
-  .profile-actions {
-    grid-column: 1 / -1;
-    justify-content: flex-end;
-  }
-}
 
 /* Keep important controls visible while browsing long lists. */
 .screen > .section-tabs {

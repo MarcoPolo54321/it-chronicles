@@ -515,8 +515,10 @@ export function renderProfiles(profiles) {
           const avatar=heroAvatarById(profile.profile.avatar);
           const name=escapeHtml(profile.profile.name);
           return `<article class="profile-slot panel-soft">
-            <div class="avatar avatar-image-wrap">${avatarImage(profile.profile.avatar,avatar.name,'avatar-image',profile.calendar?.year||2000)}</div>
-            <div class="profile-copy"><strong>${name}</strong><small>Слот ${index+1} · ${profile.calendar.year} год · ур. ${profile.player.level} · ${formatMoney(profile.player.cash)}</small></div>
+            <div class="profile-identity">
+              <div class="avatar avatar-image-wrap">${avatarImage(profile.profile.avatar,avatar.name,'avatar-image',profile.calendar?.year||2000)}</div>
+              <div class="profile-copy"><strong>${name}</strong><small>Слот ${index+1} · ${profile.calendar.year} год · ур. ${profile.player.level} · ${formatMoney(profile.player.cash)}</small></div>
+            </div>
             <div class="profile-actions">
               <button class="button primary profile-open" data-action="open-profile" data-index="${index}" aria-label="Открыть карьеру ${name}">Открыть</button>
               <button class="icon-btn danger" data-action="delete-profile" data-index="${index}" aria-label="Удалить карьеру ${name}">×</button>
